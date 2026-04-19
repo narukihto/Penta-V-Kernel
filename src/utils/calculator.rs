@@ -38,7 +38,7 @@ pub fn calculate_and_apply_decay<T: GeometricBalancer>(
     }
 
     // 3. Impact Calculation: Determine the raw stability loss.
-    // Formula: Impact = (Deficit * Decay) / Immunity
+    // Formula: Impact = (deficit * DECAY_COEFFICIENT) / immunity
     let impact = (deficit * DECAY_COEFFICIENT) / immunity;
 
     // 4. Defensive Execution: Delegate to the Guard with cooling integration.
@@ -60,24 +60,31 @@ mod tests {
         let mut cooling = CoolingProtocol::new();
         let triangle = Triangle;
         
+        // Input: 10.0 units of deficit
         let deficit = 10.0;
         calculate_and_apply_decay(&mut state, deficit, &triangle, &mut cooling);
         
-        // حساب القيمة بناءً على الثوابت الفعلية المحملة في الذاكرة
+        // Dynamic Verification:
+        // Calculate expected value using exact constants loaded at runtime.
         let immunity = triangle.immunity_factor();
         let expected_impact = (deficit * DECAY_COEFFICIENT) / immunity;
+        
+        // Since cooling is Idle by default, we assume impact is subtracted directly.
+        // We use the same logic as the Guard to ensure parity.
         let expected_stability = CORE_BASE - expected_impact;
 
-        // طباعة القيم للمساعدة في تصحيح الأخطاء إذا فشل الاختبار مرة أخرى
-        println!("Actual: {}, Expected: {}", state.current_stability, expected_stability);
-
-        // استخدام سماحية مرنة للتعامل مع Floating point errors
+        // Diagnostic info for the Architect if failure persists
         let diff = (state.current_stability - expected_stability).abs();
-        assert!(diff < 1e-9, "Difference {} is too large", diff);
+        
+        assert!(
+            diff < 1e-9, 
+            "Stability mismatch! Actual: {}, Expected: {}, Diff: {}", 
+            state.current_stability, 
+            expected_stability, 
+            diff
+        );
     }
-    
-    // ... بقية الاختبارات (test_nan_resilience) تبقى كما هي
-}
+
     #[test]
     fn test_nan_resilience() {
         let mut state = KernelState { current_stability: CORE_BASE };
