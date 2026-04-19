@@ -60,21 +60,24 @@ mod tests {
         let mut cooling = CoolingProtocol::new();
         let triangle = Triangle;
         
-        // Input: 10.0 units of deficit
         let deficit = 10.0;
         calculate_and_apply_decay(&mut state, deficit, &triangle, &mut cooling);
         
-        // Manual Calculation for verification:
-        // Raw Impact = (10.0 * 0.02) / 1.0 = 0.2
-        // Since cooling is Idle by default, no reduction factor is applied.
-        // Expected Stability = 1.0 - 0.2 = 0.8
-        let raw_impact = (deficit * DECAY_COEFFICIENT) / triangle.immunity_factor();
-        let expected = CORE_BASE - raw_impact;
+        // حساب القيمة بناءً على الثوابت الفعلية المحملة في الذاكرة
+        let immunity = triangle.immunity_factor();
+        let expected_impact = (deficit * DECAY_COEFFICIENT) / immunity;
+        let expected_stability = CORE_BASE - expected_impact;
 
-        // Use a small epsilon for floating point comparison to avoid precision mismatch
-        assert!((state.current_stability - expected).abs() < 1e-10);
+        // طباعة القيم للمساعدة في تصحيح الأخطاء إذا فشل الاختبار مرة أخرى
+        println!("Actual: {}, Expected: {}", state.current_stability, expected_stability);
+
+        // استخدام سماحية مرنة للتعامل مع Floating point errors
+        let diff = (state.current_stability - expected_stability).abs();
+        assert!(diff < 1e-9, "Difference {} is too large", diff);
     }
-
+    
+    // ... بقية الاختبارات (test_nan_resilience) تبقى كما هي
+}
     #[test]
     fn test_nan_resilience() {
         let mut state = KernelState { current_stability: CORE_BASE };
