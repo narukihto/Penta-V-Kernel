@@ -6,7 +6,7 @@
 
 use crate::core::guard::Guard;
 use crate::core::cooling::{CoolingProtocol, DECAY_COEFFICIENT};
-use crate::core::KernelState; // استيراد مباشر من النواة لضمان الخصوصية العامة
+use crate::core::KernelState; // Direct import from core for public visibility
 use crate::shapes::GeometricBalancer;
 
 /// Calculates the decay impact for a given deficit and applies it to the kernel state.
@@ -51,7 +51,7 @@ pub fn calculate_and_apply_decay<T: GeometricBalancer>(
 mod tests {
     use super::*;
     use crate::shapes::triangle::Triangle;
-    use crate::core::{CORE_BASE, KernelState}; // استيراد الثوابت من موديول النواة الأساسي
+    use crate::core::{CORE_BASE, KernelState};
     use crate::core::cooling::CoolingProtocol;
 
     #[test]
@@ -60,10 +60,19 @@ mod tests {
         let mut cooling = CoolingProtocol::new();
         let triangle = Triangle;
         
-        calculate_and_apply_decay(&mut state, 10.0, &triangle, &mut cooling);
+        // Input: 10.0 units of deficit
+        let deficit = 10.0;
+        calculate_and_apply_decay(&mut state, deficit, &triangle, &mut cooling);
         
-        let expected = CORE_BASE - (10.0 * DECAY_COEFFICIENT / 1.0);
-        assert!((state.current_stability - expected).abs() < f64::EPSILON);
+        // Manual Calculation for verification:
+        // Raw Impact = (10.0 * 0.02) / 1.0 = 0.2
+        // Since cooling is Idle by default, no reduction factor is applied.
+        // Expected Stability = 1.0 - 0.2 = 0.8
+        let raw_impact = (deficit * DECAY_COEFFICIENT) / triangle.immunity_factor();
+        let expected = CORE_BASE - raw_impact;
+
+        // Use a small epsilon for floating point comparison to avoid precision mismatch
+        assert!((state.current_stability - expected).abs() < 1e-10);
     }
 
     #[test]
@@ -71,7 +80,7 @@ mod tests {
         let mut state = KernelState { current_stability: CORE_BASE };
         let mut cooling = CoolingProtocol::new();
         
-        // Ensure invalid input does not corrupt state
+        // Ensure invalid input (NaN) does not corrupt kernel stability
         calculate_and_apply_decay(&mut state, f64::NAN, &Triangle, &mut cooling);
         assert_eq!(state.current_stability, CORE_BASE);
     }
