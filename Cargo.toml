@@ -1,1 +1,16 @@
+# Cargo.toml
 
+[package]
+name = "penta_v_kernel"
+version = "0.1.0"
+edition = "2021"
+authors = ["Issac Andrew <narukihto@example.com>"]
+description = "A Geometric Stability Protocol implementation for kernel-level load balancing."
+license = "AGPL-3.0"
+
+[dependencies]
+# No external dependencies required for the core stability logic.
+# This keeps the kernel lean, memory-safe, and dependency-free.
+
+[lib]
+path = "src/lib.rs"
