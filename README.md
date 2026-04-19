@@ -35,7 +35,6 @@ By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Ph
 
 ### The Law of Stability:
 $$Impact = \frac{Deficit \times \text{DECAY\_COEFFICIENT}}{\Phi}$$
-
 ---
 
 ## 📊 The Hierarchy of Immunity
