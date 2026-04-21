@@ -33,9 +33,6 @@ Traditional systems fail because they are "flat." When a spike hits, they break 
 
 By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Phi$)**, effectively "cooling" the system by distributing heat (load) across a wider geometric area.
 
-### The Law of Stability:
-$$Impact = \frac{Deficit \times \text{DECAY\_COEFFICIENT}}{\Phi}$$
----
 
 ## 📊 The Hierarchy of Immunity
 The kernel transitions through geometric tiers based on real-time telemetry:
