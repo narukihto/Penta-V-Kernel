@@ -92,7 +92,7 @@ fn main() {
     println!("System Impact: {}", impact); // Result: 0.0 (Asymptotic Immunity)
 }
 ```
-
+https://github.com/narukihto/Penta-V-Kernel.git
 
 📜 Roadmap & Advanced Capabilities
 [x] Phase I: Core Geometric Logic & Pole Mathematics.
