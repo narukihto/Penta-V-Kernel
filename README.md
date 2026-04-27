@@ -1,10 +1,10 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 
-[![Language: Rust](https://img.shields.io/badge/Language-Rust-orange.svg)](https://www.rust-lang.org/)
-[![Architecture: Geometric](https://img.shields.io/badge/Architecture-Geometric-blue.svg)](#)
-[![License: Apache--2.0](https://img.shields.io/badge/License-Apache--2.0-red.svg)](#)
-[![Tests: Passing](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)](#)
+[![Stability Tests](https://github.com)](https://github.com)
+[![Language: Rust](https://shields.io)](https://rust-lang.org)
+[![Architecture: Geometric](https://shields.io)](#)
+[![License: Apache--2.0](https://shields.io)](LICENSE)
 
 > "In the chaos of data, geometry is the only truth. The Penta-V Kernel doesn't just manage load; it redefines the physics of digital survival." — **The First Architect**
 
@@ -17,58 +17,45 @@ Instead of traditional linear queuing, Penta-V treats system stressors as "Defic
 
 ---
 
-## ✅ System Integrity: Latest Test Results
-Our latest architectural simulation confirms the absolute stability of the core. All core modules have achieved **Green Status** under extreme load scenarios:
+## ✅ System Integrity & Automated Testing
+Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation.
 
-* **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅ (Verified 50% Guard baseline protection).
-* **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅ (Decagon efficiency validated against Triangle).
-* **Stress Resilience:** `test_decagon_stress_attack` **PASSED** ✅ (System maintained stability under high deficit).
-* **Absolute Defense:** `test_total_collapse_protection` **PASSED** ✅ (SECURE_CORE triggered at 5000 units of load).
-* **Memory Safety:** `test_nan_resilience` **PASSED** ✅ (Zero corruption on invalid data input).
+### Latest Simulation Results:
+![Test Suite Evidence](https://erweima.ai)
+
+* **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅ (Verified 50% Guard baseline).
+* **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅ (Decagon efficiency validated).
+* **Stress Resilience:** `test_decagon_stress_attack` **PASSED** ✅ (High-deficit stability).
+* **Memory Safety:** `test_nan_resilience` **PASSED** ✅ (Zero-corruption on invalid data).
 
 ---
 
 ## 💎 Core Philosophy: Why Geometry?
-Traditional systems fail because they are "flat." When a spike hits, they break or throttle. Penta-V uses **Structural Immunity**. 
+Traditional systems fail because they are "flat." Penta-V uses **Structural Immunity**. 
 
-By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Phi$)**, effectively "cooling" the system by distributing heat (load) across a wider geometric area.
-
+By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Phi$)**, effectively "cooling" the system by distributing load across a wider geometric area.
 
 ## 📊 The Hierarchy of Immunity
-The kernel transitions through geometric tiers based on real-time telemetry:
+
 
 | Shape | Poles ($N$) | Immunity ($\Phi$) | Tier | Use Case |
 | :--- | :--- | :--- | :--- | :--- |
-| **Triangle** | 3 | 1.00 | Foundation | Idle / Low-Power State |
-| **Hexagon** | 6 | 2.00 | Balanced | Standard Operating Load |
-| **Nonagon** | 9 | 3.00 | Triple-Stability | High-Traffic Surge |
-| **Dodecagon** | 12 | 4.00 | Quad-Stability | Critical Stress Event |
+| **Triangle** | 3 | 1.00 | Foundation | Idle / Low-Power |
+| **Hexagon** | 6 | 2.00 | Balanced | Standard Load |
+| **Nonagon** | 9 | 3.00 | Triple-Stability | High-Traffic |
+| **Dodecagon** | 12 | 4.00 | Quad-Stability | Critical Stress |
 | **Circle** | $\infty$ | $\infty$ | **The Shield** | Asymptotic Defense |
 
 ---
 
 ## ⚔️ Comparisons: Penta-V vs. Traditional Logic
 
+
 | Feature | Standard Load Balancers | Penta-V Kernel |
 | :--- | :--- | :--- |
-| **Logic** | Linear (First-In, First-Out) | **Geometric (Spatial Dissipation)** |
+| **Logic** | Linear (FIFO) | **Geometric (Spatial Dissipation)** |
 | **Adaptability** | Reactive (Scaling Up) | **Proactive (Reshaping Structure)** |
 | **Safety** | Exception Handling | **Inherent Structural Immunity** |
-| **Efficiency** | High Overhead | **Zero-Cost Abstractions (Rust)** |
-| **Protection** | Best-effort | **Guaranteed SECURE_CORE (0.05)** |
-
----
-
-## 🛠️ Internal Architecture
-
-### 1. Shape Engine (`src/shapes/`)
-A modular library of geometric primitives. Every shape implements the `GeometricBalancer` trait, making the system infinitely extensible.
-
-### 2. The Guard (`src/core/guard.rs`)
-The final arbiter of stability. It enforces the **SECURE_CORE** threshold. If a calculation would drop stability below this point, the Guard triggers an immediate geometric escalation and damage mitigation.
-
-### 3. Reactive Cooling (`src/core/cooling.rs`)
-Simulates digital cooling by dynamically adjusting the system's thermal state. It integrates a reduction factor that scales based on geometric efficiency.
 
 ---
 
@@ -77,9 +64,11 @@ Simulates digital cooling by dynamically adjusting the system's thermal state. I
 Add to your `Cargo.toml`:
 ```toml
 [dependencies]
-penta_v_kernel = "1.0.0"
+penta_v_kernel = { git = "https://github.com" }
+```
+
 Basic usage:
-Rust
+```rust
 use penta_v_kernel::shapes::{Circle, GeometricBalancer};
 
 fn main() {
@@ -92,18 +81,16 @@ fn main() {
     println!("System Impact: {}", impact); // Result: 0.0 (Asymptotic Immunity)
 }
 ```
-https://github.com/narukihto/Penta-V-Kernel.git
 
-📜 Roadmap & Advanced Capabilities
-[x] Phase I: Core Geometric Logic & Pole Mathematics.
+---
 
-[x] Phase II: Real-time Thermal-Aware Decay Scaling & Guard Protection
+## 📜 Roadmap
+- [x] Phase I: Core Geometric Logic & Pole Mathematics.
+- [x] Phase II: Real-time Thermal-Aware Decay Scaling.
+- [ ] Phase IV: Penta-V Distributed Mesh (Inter-kernel communication).
+- [ ] Phase V: Hardware-level integration (FPGA / ASIC acceleration).
 
-[ ] Phase IV: Penta-V Distributed Mesh (Inter-kernel communication).
+---
 
-[ ] Phase V: Hardware-level integration (FPGA / ASIC acceleration).
-
-⚖️ License
-Distributed under the Apache License 2.0. Created by Isaac Andrew (The First Architect).
-
-"Systems do not fail because of load; they fail because of poor architecture. Geometry is the remedy."
+⚖️ **License**
+Distributed under the Apache License 2.0. Created by **Isaac Andrew (The First Architect)**.
