@@ -22,12 +22,6 @@
 //! ```
 // src/lib.rs
 
-//! # Penta-V Kernel
-//!
-//! A high-performance Geometric Stability Protocol implementation in Rust.
-//! This crate provides the core infrastructure for protecting system integrity
-//! through N-dimensional geometric load balancing and defensive decay management.
-
 pub mod core;
 pub mod shapes;
 pub mod utils;
