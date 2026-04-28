@@ -1,21 +1,29 @@
 // src/shapes/octagon.rs
 
-//! Implementation of the Octagon shape.
-//! Poles: 8
-//! Immunity Factor: 8 / 3 ≈ 2.66 (Advanced Resilience Tier)
+//! # Octagon Geometry
+//! 
+//! Implementation of the 8-pole geometric configuration.
+//! This shape provides advanced resilience, serving as a critical buffer 
+//! between standard operations and high-stress system states.
 
 use super::GeometricBalancer;
 
+/// Represents an Octagon geometric configuration.
+/// 
+/// Poles: 8
+/// Immunity Factor: 2.66
 pub struct Octagon;
 
 impl GeometricBalancer for Octagon {
-    /// Returns the number of poles for an octagon (8.0).
+    /// Returns the number of geometric poles for an Octagon (8.0).
+    #[inline(always)]
     fn poles(&self) -> f64 {
         8.0
     }
 
-    /// Returns the name of the shape.
-    fn name(&self) -> &str {
+    /// Returns the canonical name of the shape.
+    #[inline(always)]
+    fn name(&self) -> &'static str {
         "Octagon"
     }
 }
