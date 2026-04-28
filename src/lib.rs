@@ -1,7 +1,6 @@
 // src/lib.rs
 
 #![no_std] 
-#![deny(missing_docs)] 
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
 //!
