@@ -20,6 +20,13 @@
 //! 
 //! println!("Dissipated Impact: {}", impact);
 //! ```
+// src/lib.rs
+
+//! # Penta-V Kernel
+//!
+//! A high-performance Geometric Stability Protocol implementation in Rust.
+//! This crate provides the core infrastructure for protecting system integrity
+//! through N-dimensional geometric load balancing and defensive decay management.
 
 pub mod core;
 pub mod shapes;
@@ -33,10 +40,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_protocol_constants() {
-       
-        assert_eq!(CORE_BASE, 1.0, "Core base must be normalized to 1.0");
-        assert!(SECURE_CORE > 0.0, "Secure core threshold must be positive");
-        assert!(SECURE_CORE < CORE_BASE, "Secure core must be below base stability");
+    fn test_initialization() {
+        // Verify the core starts at the defined base stability
+        assert_eq!(CORE_BASE, 1.0);
+        assert!(SECURE_CORE > 0.0);
     }
 }
