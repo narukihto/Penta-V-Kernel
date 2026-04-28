@@ -5,8 +5,11 @@ name = "penta_v_kernel"
 version = "0.1.0"
 edition = "2021"
 authors = ["Issac Andrew <narukihto@example.com>"]
-description = "A Geometric Stability Protocol implementation for kernel-level load balancing."
-license = "AGPL-3.0"
+description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing."
+license = "Apache-2.0"
+repository = "https://github.com"
+keywords = ["kernel", "load-balancing", "geometry", "performance"]
+categories = ["os", "no-std"]
 
 [dependencies]
 # No external dependencies required for the core stability logic.
