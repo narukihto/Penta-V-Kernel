@@ -1,7 +1,7 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 
-https://github.com
+![Stability Tests](https://github.com)
 
 
 > "In the chaos of data, geometry is the only truth. The Penta-V Kernel doesn't just manage load; it redefines the physics of digital survival." — **The First Architect**
