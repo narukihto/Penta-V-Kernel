@@ -15,21 +15,34 @@ pub mod decagon;
 pub mod dodecagon;
 pub mod circle;
 
+// Re-export shapes for direct access via the shapes module
+pub use triangle::Triangle;
+pub use square::Square;
+pub use pentagon::Pentagon;
+pub use hexagon::Hexagon;
+pub use heptagon::Heptagon;
+pub use octagon::Octagon;
+pub use nonagon::Nonagon;
+pub use decagon::Decagon;
+pub use dodecagon::Dodecagon;
+pub use circle::Circle;
+
 /// Trait defining the geometric stability capabilities of a shape.
-/// Implementing this trait allows a shape to be used by the calculator 
-/// and the kernel's defensive layer.
+/// 
+/// Implementing this trait allows a structure to participate in the 
+/// Penta-V load distribution protocol by defining its spatial pole configuration.
 pub trait GeometricBalancer {
-    /// Returns the number of poles (N) of the shape.
-    /// This value is central to the load distribution calculation.
+    /// Returns the number of geometric poles (N) of the shape.
+    /// This value dictates the dissipation capacity of the structure.
     fn poles(&self) -> f64;
 
-    /// Calculates the immunity factor (N / 3.0).
-    /// Higher values provide better resistance to external load.
-    /// Default implementation uses static poles; can be overridden for custom shapes.
+    /// Calculates the immunity factor (Φ) based on the N-pole configuration.
+    /// 
+    /// The default implementation uses the standard Φ = N / 3.0 formula,
+    /// with explicit handling for asymptotic (infinite) stability.
     #[inline(always)]
     fn immunity_factor(&self) -> f64 {
         let n = self.poles();
-        // Handle the Circle (Infinity) case explicitly in the trait implementation
         if n.is_infinite() {
             f64::INFINITY
         } else {
@@ -37,6 +50,6 @@ pub trait GeometricBalancer {
         }
     }
 
-    /// Returns the name of the geometric form for logging and audit purposes.
+    /// Returns the canonical name of the geometric form.
     fn name(&self) -> &str;
 }
