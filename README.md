@@ -17,7 +17,7 @@ Instead of traditional linear queuing, Penta-V treats system stressors as "Defic
 Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation.
 
 ### Latest Simulation Results:
-![Test Suite Evidence](https://erweima.ai)
+![Test Suite Evidence]
 
 * **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅ (Verified 50% Guard baseline).
 * **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅ (Decagon efficiency validated).
