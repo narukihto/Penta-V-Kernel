@@ -1,7 +1,14 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 
-![Rust](https://shields.io) ![Architecture](https://shields.io) ![License](https://shields.io) ![CI](https://github.com)
+<p align="left">
+  <a href="https://github.com">
+    <img src="https://github.com/workflows/ci.yml/badge.svg" alt="CI Status">
+  </a>
+  <img src="https://shields.io" alt="Rust">
+  <img src="https://shields.io" alt="Architecture">
+  <img src="https://shields.io" alt="License">
+</p>
 
 > "In the chaos of data, geometry is the only truth. The Penta-V Kernel doesn't just manage load; it redefines the physics of digital survival." — **The First Architect**
 
