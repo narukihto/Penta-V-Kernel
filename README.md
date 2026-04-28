@@ -1,6 +1,12 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 
+<p align="left">
+  <img src="https://shields.io" alt="Rust">
+  <img src="https://shields.io" alt="Architecture">
+  <img src="https://shields.io" alt="License">
+  <img src="https://github.com" alt="CI Status">
+</p>
 
 > "In the chaos of data, geometry is the only truth. The Penta-V Kernel doesn't just manage load; it redefines the physics of digital survival." — **The First Architect**
 
@@ -14,15 +20,12 @@ Instead of traditional linear queuing, Penta-V treats system stressors as "Defic
 ---
 
 ## ✅ System Integrity & Automated Testing
-Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation.
+Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation via GitHub Actions.
 
-### Latest Simulation Results:
-![Test Suite Evidence]
-
-* **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅ (Verified 50% Guard baseline).
-* **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅ (Decagon efficiency validated).
-* **Stress Resilience:** `test_decagon_stress_attack` **PASSED** ✅ (High-deficit stability).
-* **Memory Safety:** `test_nan_resilience` **PASSED** ✅ (Zero-corruption on invalid data).
+* **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅
+* **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅
+* **Stress Resilience:** `test_decagon_stress_attack` **PASSED** ✅
+* **Memory Safety:** `test_nan_resilience` **PASSED** ✅
 
 ---
 
@@ -52,15 +55,16 @@ By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Ph
 | **Logic** | Linear (FIFO) | **Geometric (Spatial Dissipation)** |
 | **Adaptability** | Reactive (Scaling Up) | **Proactive (Reshaping Structure)** |
 | **Safety** | Exception Handling | **Inherent Structural Immunity** |
+| **Efficiency** | High Overhead | **Zero-Cost Abstractions (Rust)** |
 
 ---
 
-## 🚀 Quick Start (Rust)
+## 🚀 Quick Start
 
 Add to your `Cargo.toml`:
 ```toml
 [dependencies]
-penta_v_kernel = { git = "https://github.com" }
+penta_v_kernel = "0.1.0"
 ```
 
 Basic usage:
@@ -81,10 +85,10 @@ fn main() {
 ---
 
 ## 📜 Roadmap
-- [x] Phase I: Core Geometric Logic & Pole Mathematics.
-- [x] Phase II: Real-time Thermal-Aware Decay Scaling.
-- [ ] Phase IV: Penta-V Distributed Mesh (Inter-kernel communication).
-- [ ] Phase V: Hardware-level integration (FPGA / ASIC acceleration).
+- [x] **Phase I**: Core Geometric Logic & Pole Mathematics.
+- [x] **Phase II**: Real-time Thermal-Aware Decay Scaling & Guard Protection.
+- [ ] **Phase IV**: Penta-V Distributed Mesh (Inter-kernel communication).
+- [ ] **Phase V**: Hardware-level integration (FPGA / ASIC acceleration).
 
 ---
 
