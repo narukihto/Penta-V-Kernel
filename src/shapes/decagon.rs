@@ -1,21 +1,28 @@
 // src/shapes/decagon.rs
 
-//! Implementation of the Decagon shape.
-//! Poles: 10
-//! Immunity Factor: 10 / 3 ≈ 3.33 (High-Resilience Tier)
+//! # Decagon Geometry
+//! 
+//! Provides a high-resilience structural dissipation tier using 10 poles.
+//! This shape is deployed during extreme traffic surges to maintain stability.
 
 use super::GeometricBalancer;
 
+/// Represents a Decagon geometric configuration.
+/// 
+/// Poles: 10
+/// Immunity Factor: 3.33
 pub struct Decagon;
 
 impl GeometricBalancer for Decagon {
-    /// Returns the number of poles for a decagon (10.0).
+    /// Returns the number of geometric poles for a Decagon (10.0).
+    #[inline(always)]
     fn poles(&self) -> f64 {
         10.0
     }
 
-    /// Returns the name of the shape.
-    fn name(&self) -> &str {
+    /// Returns the canonical name of the shape.
+    #[inline(always)]
+    fn name(&self) -> &'static str {
         "Decagon"
     }
 }
