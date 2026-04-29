@@ -7,7 +7,8 @@ on:
       - 'v*'
   pull_request:
     branches: [ main ]
-  # Enable manual execution from the GitHub Actions UI
+    
+  # Enable manual execution from the GitHub Acti
   workflow_dispatch: 
 
 jobs:
