@@ -16,7 +16,7 @@ The core stability is managed by the `shapes/` module. Each shape implements the
 *   **Poles ($N$):** Defined as the number of structural nodes capable of absorbing shock.
 *   **Immunity Factor ($\Phi$):** A dimensionless constant representing the shape's inherent resistance to entropy. 
       **Calculation:** $\Phi = \frac{N}{3.0}$
-*   *Decay Law:**   The systemic impact is governed by the formula:
+*   Decay Law:   The systemic impact is governed by the formula:
     $$Impact = \frac{Deficit \times \text{DECAY\_COEFFICIENT}}{\Phi}$$
 
 *(Note: We have escaped the underscores in the formula to ensure correct rendering in MathJax/GitHub).*
