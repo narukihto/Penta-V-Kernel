@@ -15,13 +15,12 @@ The core stability is managed by the `shapes/` module. Each shape implements the
 
 *   **Poles ($N$):** Defined as the number of structural nodes capable of absorbing shock.
 *   **Immunity Factor ($\Phi$):** A dimensionless constant representing the shape's inherent resistance to entropy. 
-      **Calculation:** $\Phi = \frac{N}{3.0}$
-*  *   **Decay Law:** The systemic impact is governed by the formula:
+    *   **Calculation:** $\Phi = N / 3.0$
+*   **Decay Law:** The systemic impact is governed by the core formula:
 
-> [!IMPORTANT]
-> $$ Impact = \frac{Deficit \times DECAY\_COEFFICIENT}{\Phi} $$
-
-*(Note: We have escaped the underscores in the formula to ensure correct rendering in MathJax/GitHub).*
+```math
+Impact = (Deficit * DECAY_COEFFICIENT) / Phi
+```
 
 ### 3.2 Execution Engine
 The `utils/calculator.rs` module handles the transformation of external input into internal stability states. It functions as a mathematical filter, ensuring that no raw shock directly compromises the system's integrity. The engine acts as the bridge between telemetry data and geometric response.
@@ -36,9 +35,9 @@ The `Guard` module acts as the final arbiter of system health:
 ## 4. Reliability & Integrity Implementation
 To ensure the system remains tamper-proof and robust against exploitation, the architecture employs:
 
-1.  **Geometric Immutability:** Stability state transitions are derived from fixed mathematical constants, making the scoring system predictable and verifiable through formal methods.
-2.  **Memory Safety:** Built entirely in **Rust**, the kernel leverages the ownership model and borrow checker to eliminate data races, null pointer dereferences, and buffer overflows.
-3.  **Strict Encapsulation:** Geometric logic is decoupled from the state. This modularity allows for the dynamic injection of new stability shapes without modifying the `CORE_BASE` arithmetic.
+1.  **Geometric Immutability:** Stability state transitions are derived from fixed mathematical constants, making the scoring system predictable and verifiable.
+2.  **Memory Safety:** Built entirely in **Rust**, the kernel leverages the ownership model and borrow checker to eliminate data races and buffer overflows.
+3.  **Strict Encapsulation:** Geometric logic is decoupled from the state, allowing for the dynamic injection of new stability shapes without modifying the `CORE_BASE` arithmetic.
 4.  **Hardware-Aligned Performance:** The logic is optimized for zero-cost abstractions, ensuring that geometric calculations do not introduce latency in critical path execution.
 
 ---
