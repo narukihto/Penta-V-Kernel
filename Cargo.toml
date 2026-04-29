@@ -7,7 +7,6 @@ description = "A mission-critical Geometric Stability Protocol for kernel-level 
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/narukihto/Penta-V-Kernel.git"
-homepage = "https://github.com/narukihto/Penta-V-Kernel.git"
 keywords = ["kernel", "load-balancing", "geometry", "performance", "resilience"]
 categories = ["embedded", "no-std", "os", "algorithms"]
 
