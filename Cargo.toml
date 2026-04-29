@@ -1,12 +1,13 @@
 [package]
 name = "penta_v_kernel"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Issac Andrew <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
 license = "Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/narukihto/Penta-V-Kernel.git"
+repository = "https://github.com"
+homepage = "https://github.com"
 keywords = ["kernel", "load-balancing", "geometry", "performance", "resilience"]
 categories = ["embedded", "no-std", "os", "algorithms"]
 
