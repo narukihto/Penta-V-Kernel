@@ -19,7 +19,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Run Stability & Benchmark Tests
         run: cargo test --verbose
-
+ 
   integrity_audit:
     name: Protocol Integrity Audit
     runs-on: ubuntu-latest
