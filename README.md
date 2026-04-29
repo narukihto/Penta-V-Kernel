@@ -1,6 +1,7 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 
+![Build Status](https://github.com)
 
 > "In the chaos of data, geometry is the only truth. The Penta-V Kernel doesn't just manage load; it redefines the physics of digital survival." — **The First Architect**
 
@@ -16,17 +17,21 @@ Instead of traditional linear queuing, Penta-V treats system stressors as "Defic
 ## ✅ System Integrity & Automated Testing
 Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation via GitHub Actions.
 
-* **Core Stability Logic:** `test_decay_calculation_logic` **PASSED** ✅
+* **Distributed Mesh:** `test_mesh_pulse_telemetry_integrity` **PASSED** ✅
 * **Geometric Efficiency:** `test_efficiency_comparison` **PASSED** ✅
 * **Stress Resilience:** `test_decagon_stress_attack` **PASSED** ✅
-* **Memory Safety:** `test_nan_resilience` **PASSED** ✅
+* **Handshake Security:** `test_mesh_critical_handshake_security` **PASSED** ✅
 
 ---
 
-## 💎 Core Philosophy: Why Geometry?
-Traditional systems fail because they are "flat." Penta-V uses **Structural Immunity**. 
+## 🛰️ Phase IV: Distributed Geometric Mesh
+In version **v0.2.0**, we introduced the **Distributed Mesh Protocol**. Kernels can now communicate their stability states across a network, allowing for proactive load sharing and systemic immunity synchronization.
 
-By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Phi$)**, effectively "cooling" the system by distributing load across a wider geometric area.
+*   **Stability Packets:** Zero-allocation telemetry for inter-kernel sync.
+*   **Mesh Heartbeats:** Proactive health signals to prevent localized core collapse.
+*   **Secure Peering:** Trust-boundary enforcement via the `secure_gate` protocol.
+
+---
 
 ## 📊 The Hierarchy of Immunity
 
@@ -41,38 +46,25 @@ By increasing the number of poles ($N$), we increase the **Immunity Factor ($\Ph
 
 ---
 
-## ⚔️ Comparisons: Penta-V vs. Traditional Logic
-
-
-| Feature | Standard Load Balancers | Penta-V Kernel |
-| :--- | :--- | :--- |
-| **Logic** | Linear (FIFO) | **Geometric (Spatial Dissipation)** |
-| **Adaptability** | Reactive (Scaling Up) | **Proactive (Reshaping Structure)** |
-| **Safety** | Exception Handling | **Inherent Structural Immunity** |
-| **Efficiency** | High Overhead | **Zero-Cost Abstractions (Rust)** |
-
----
-
 ## 🚀 Quick Start
 
 Add to your `Cargo.toml`:
 ```toml
 [dependencies]
-penta_v_kernel = "0.1.0"
+penta_v_kernel = "0.2.0"
 ```
 
-Basic usage:
+### Basic Mesh Usage:
 ```rust
-use penta_v_kernel::shapes::{Circle, GeometricBalancer};
+use penta_v_kernel::mesh::{MeshNode, MeshPulse};
 
 fn main() {
-    let shield = Circle;
-    let deficit = 500.0;
+    let mut node = MeshNode::new(0xAA55, true);
     
-    // Calculate how the Circle dissipates a massive shock
-    let impact = (deficit * 0.02) / shield.immunity_factor();
+    // Generate a stability heartbeat for the mesh
+    let pulse = node.generate_pulse();
     
-    println!("System Impact: {}", impact); // Result: 0.0 (Asymptotic Immunity)
+    println!("Node {} Stability: {}", pulse.node_id, pulse.stability_score);
 }
 ```
 
@@ -81,7 +73,7 @@ fn main() {
 ## 📜 Roadmap
 - [x] **Phase I**: Core Geometric Logic & Pole Mathematics.
 - [x] **Phase II**: Real-time Thermal-Aware Decay Scaling & Guard Protection.
-- [ ] **Phase IV**: Penta-V Distributed Mesh (Inter-kernel communication).
+- [x] **Phase IV**: Penta-V Distributed Mesh (Inter-kernel communication).
 - [ ] **Phase V**: Hardware-level integration (FPGA / ASIC acceleration).
 
 ---

@@ -5,29 +5,15 @@
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
 //!
 //! **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
-//!
-//! Penta-V Kernel provides a mission-critical infrastructure for protecting system integrity
-//! through **Geometric Load Balancing**. Instead of linear queuing, it treats system 
-//! stressors as "Deficits" and dissipates them across N-dimensional Geometric Poles.
-//!
-//! ## Quick Example
-//! ```rust
-//! use penta_v_kernel::shapes::{Circle, GeometricBalancer};
-//! 
-//! let shield = Circle;
-//! let deficit = 100.0;
-//! let impact = (deficit * 0.02) / shield.immunity_factor();
-//! 
-//! println!("Dissipated Impact: {}", impact);
-//! ```
-// src/lib.rs
 
 pub mod core;
 pub mod shapes;
 pub mod utils;
+pub mod mesh; // Phase IV: Distributed Geometric Mesh Protocol
 
 pub use core::{CORE_BASE, SECURE_CORE};
 pub use shapes::GeometricBalancer;
+pub use mesh::{StabilityPacket, MeshNode};
 
 #[cfg(test)]
 mod tests {
@@ -35,8 +21,9 @@ mod tests {
 
     #[test]
     fn test_initialization() {
-        // Verify the core starts at the defined base stability
+        // Critical: Ensure core initializes at defined base stability
         assert_eq!(CORE_BASE, 1.0);
+        // Safety: Verify secure core threshold is operational
         assert!(SECURE_CORE > 0.0);
     }
 }
