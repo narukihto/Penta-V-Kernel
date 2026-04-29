@@ -13,19 +13,21 @@ The kernel operates on the principle that systemic resilience is proportional to
 ### 3.1 Stability Layer (Shapes)
 The core stability is managed by the `shapes/` module. Each shape implements the `GeometricBalancer` trait, providing a standardized interface for structural resilience:
 
-* **Poles ($N$):** Defined as the number of structural nodes capable of absorbing shock.
-* **Immunity Factor ($\Phi$):** A dimensionless constant representing the shape's inherent resistance to entropy. 
-    * Calculation: $\Phi = \frac{N}{3.0}$
-* **Decay Law:** The systemic impact is governed by the formula:
+*   **Poles ($N$):** Defined as the number of structural nodes capable of absorbing shock.
+*   **Immunity Factor ($\Phi$):** A dimensionless constant representing the shape's inherent resistance to entropy. 
+    *   **Calculation:** $\Phi = \frac{N}{3.0}$
+*   **Decay Law:** The systemic impact is governed by the formula:
     $$Impact = \frac{Deficit \times \text{DECAY\_COEFFICIENT}}{\Phi}$$
+
+*(Note: We have escaped the underscores in the formula to ensure correct rendering in MathJax/GitHub).*
 
 ### 3.2 Execution Engine
 The `utils/calculator.rs` module handles the transformation of external input into internal stability states. It functions as a mathematical filter, ensuring that no raw shock directly compromises the system's integrity. The engine acts as the bridge between telemetry data and geometric response.
 
 ### 3.3 Protection Logic
 The `Guard` module acts as the final arbiter of system health:
-* **Decay Validation:** Real-time validation of input stressors against the current geometric state.
-* **Threshold Enforcement:** Strictly prevents any operation that would push the `current_stability` below the **SECURE_CORE** threshold (hard-coded at **0.05**).
+*   **Decay Validation:** Real-time validation of input stressors against the current geometric state.
+*   **Threshold Enforcement:** Strictly prevents any operation that would push the `current_stability` below the **SECURE_CORE** threshold (hard-coded at **0.05**).
 
 ---
 
@@ -42,8 +44,8 @@ To ensure the system remains tamper-proof and robust against exploitation, the a
 ## 5. Performance Benchmarks
 As validated in the `benchmark_suite.rs`, the efficiency of the system scales linearly with the number of poles ($N$). 
 
-* **Finite Scales:** Progresses from Triangle ($N=3$) to Dodecagon ($N=12$).
-* **Asymptotic Maximum:** The **Circle** shape ($N \to \infty$) provides near-perfect dissipation, making it the ideal configuration for high-traffic, mission-critical load balancers.
+*   **Finite Scales:** Progresses from Triangle ($N=3$) to Dodecagon ($N=12$).
+*   **Asymptotic Maximum:** The **Circle** shape ($N \to \infty$) provides near-perfect dissipation, making it the ideal configuration for high-traffic, mission-critical load balancers.
 
 ---
 *Authorized for internal use by the Architecture Division.*
