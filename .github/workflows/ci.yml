@@ -7,6 +7,8 @@ on:
       - 'v*'
   pull_request:
     branches: [ main ]
+  # Enable manual execution from the GitHub Actions UI
+  workflow_dispatch: 
 
 jobs:
   test:
@@ -19,7 +21,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Run Stability & Benchmark Tests
         run: cargo test --verbose
- 
+
   integrity_audit:
     name: Protocol Integrity Audit
     runs-on: ubuntu-latest
