@@ -1,6 +1,7 @@
 // src/lib.rs
 
-#![no_std] 
+// Standard library is only required when building for Python bindings
+#![cfg_attr(not(feature = "extension-module"), no_std)] 
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
 //!
@@ -9,12 +10,36 @@
 pub mod core;
 pub mod shapes;
 pub mod utils;
-pub mod mesh; // Phase IV: Distributed Geometric Mesh Protocol
+pub mod mesh; 
 
 pub use core::{CORE_BASE, SECURE_CORE};
 pub use shapes::GeometricBalancer;
 pub use mesh::{StabilityPacket, MeshNode};
 
+// --- Python Bindings Section ---
+// Only compiled when the "extension-module" feature is active (via Maturin/PyPI)
+#[cfg(feature = "extension-module")]
+use pyo3::prelude::*;
+
+#[cfg(feature = "extension-module")]
+#[pyfunction]
+/// Python Bridge: Calculates the stability impact based on geometric deficit and immunity factor
+fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
+    // Technical: Direct geometric dissipation logic
+    Ok((deficit * 0.02) / immunity)
+}
+
+#[cfg(feature = "extension-module")]
+#[pymodule]
+/// Python Module: Defines the penta_v_kernel entry point for PyPI
+fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
+    // Exporting core constants to Python
+    m.add("SECURE_CORE", SECURE_CORE)?;
+    Ok(())
+}
+
+// --- Internal Test Suite ---
 #[cfg(test)]
 mod tests {
     use super::*;
