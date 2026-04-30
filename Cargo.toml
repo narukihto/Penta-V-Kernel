@@ -1,4 +1,29 @@
-# --- Cargo.toml additions ---
+[package]
+name = "penta_v_kernel"
+version = "0.2.1"
+edition = "2021"
+authors = ["Issac Andrew <Issaclex@proton.me>"]
+description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com"
+homepage = "https://github.com"
+keywords = ["kernel", "load-balancing", "geometry", "performance", "resilience"]
+categories = ["embedded", "no-std", "os", "algorithms"]
+
+[lib]
+name = "penta_v_kernel"
+path = "src/lib.rs"
+# Required: cdylib for Python, rlib for Rust static linking
+crate-type = ["cdylib", "rlib"] 
+
+[features]
+# Technical: Defines the extension-module feature for PyO3 support
+extension-module = ["pyo3/extension-module"]
+
+[dependencies]
+# Python Bridge: PyO3 is optional and tied to the extension-module feature
+pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 
 [profile.dev]
 # Technical: Required for no_std builds to avoid unwinding overhead
@@ -7,11 +32,3 @@ panic = "abort"
 [profile.release]
 # Technical: Ensures deterministic termination on panic in production
 panic = "abort"
-
-[features]
-# Critical: Defines the extension-module feature for Python support
-extension-module = ["pyo3/extension-module"]
-
-[dependencies]
-# Python Bridge: PyO3 is optional and tied to the extension-module feature
-pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
