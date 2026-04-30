@@ -1,6 +1,6 @@
 [package]
 name = "penta_v_kernel"
-version = "0.1.1"
+version = "0.2.1"
 edition = "2021"
 authors = ["Issac Andrew <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
@@ -11,7 +11,12 @@ homepage = "https://github.com"
 keywords = ["kernel", "load-balancing", "geometry", "performance", "resilience"]
 categories = ["embedded", "no-std", "os", "algorithms"]
 
-[dependencies]
-
 [lib]
+name = "penta_v_kernel"
 path = "src/lib.rs"
+# Required: cdylib produces dynamic library files (.so/.pyd) for Python interfacing
+crate-type = ["cdylib", "rlib"] 
+
+[dependencies]
+# Python Bridge: PyO3 enables Rust-to-Python bindings and extension modules
+pyo3 = { version = "0.21", features = ["extension-module"] }
