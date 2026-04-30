@@ -14,9 +14,13 @@ categories = ["embedded", "no-std", "os", "algorithms"]
 [lib]
 name = "penta_v_kernel"
 path = "src/lib.rs"
-# Required: cdylib produces dynamic library files (.so/.pyd) for Python interfacing
+# Required: cdylib for Python, rlib for Rust static linking
 crate-type = ["cdylib", "rlib"] 
 
+[features]
+# Critical: Defines the extension-module feature for Python binding support
+extension-module = ["pyo3/extension-module"]
+
 [dependencies]
-# Python Bridge: PyO3 enables Rust-to-Python bindings and extension modules
-pyo3 = { version = "0.21", features = ["extension-module"] }
+# Python Bridge: PyO3 is now optional and tied to the extension-module feature
+pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
