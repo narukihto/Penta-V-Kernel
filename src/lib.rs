@@ -1,6 +1,6 @@
 // src/lib.rs
 
-// Technical: Enable no_std ONLY when NOT building for Python AND NOT running tests
+// Technical: Enable no_std only when NOT building for Python extensions AND NOT in test mode
 #![cfg_attr(all(not(feature = "extension-module"), not(test)), no_std)]
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
@@ -17,6 +17,7 @@ pub use crate::shapes::GeometricBalancer;
 pub use crate::mesh::{StabilityPacket, MeshNode};
 
 // --- Python Bindings Section ---
+// Only compiled when the "extension-module" feature is active (via Maturin/PyPI)
 #[cfg(feature = "extension-module")]
 use pyo3::prelude::*;
 
@@ -24,6 +25,7 @@ use pyo3::prelude::*;
 #[pyfunction]
 /// Python Bridge: Calculates geometric impact based on deficit and immunity factor
 fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
+    // Technical: Direct geometric dissipation logic bridge
     Ok((deficit * 0.02) / immunity)
 }
 
@@ -32,15 +34,18 @@ fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
 /// Python Module: Defines the penta_v_kernel entry point for PyPI
 fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
+    // Exporting internal constants for Python accessibility
     m.add("SECURE_CORE", SECURE_CORE)?;
     Ok(())
 }
 
 // --- Panic Handler for no_std ---
-// Technical: Only active in pure no_std builds (Not active during Python builds or Tests)
+// Technical: Required landing function for fatal errors in no_std builds.
+// Explicitly disabled during tests to allow the standard test runner to handle panics.
 #[cfg(all(not(feature = "extension-module"), not(test)))]
 #[panic_handler]
 fn panic(_info: &::core::panic::PanicInfo) -> ! {
+    // Technical: Immediate halt loop to satisfy the 'abort' requirement in bare-metal
     loop {}
 }
 
