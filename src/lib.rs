@@ -1,6 +1,6 @@
 // src/lib.rs
 
-// Technical: Enable no_std only when NOT testing and NOT building for Python
+// Technical: Enable no_std ONLY when NOT building for Python AND NOT running tests
 #![cfg_attr(all(not(feature = "extension-module"), not(test)), no_std)]
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
@@ -22,13 +22,14 @@ use pyo3::prelude::*;
 
 #[cfg(feature = "extension-module")]
 #[pyfunction]
-/// Python Bridge: Calculates geometric impact
+/// Python Bridge: Calculates geometric impact based on deficit and immunity factor
 fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
     Ok((deficit * 0.02) / immunity)
 }
 
 #[cfg(feature = "extension-module")]
 #[pymodule]
+/// Python Module: Defines the penta_v_kernel entry point for PyPI
 fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
     m.add("SECURE_CORE", SECURE_CORE)?;
@@ -36,7 +37,7 @@ fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
 }
 
 // --- Panic Handler for no_std ---
-// Technical: Only active in real no_std builds (not during tests or python builds)
+// Technical: Only active in pure no_std builds (Not active during Python builds or Tests)
 #[cfg(all(not(feature = "extension-module"), not(test)))]
 #[panic_handler]
 fn panic(_info: &::core::panic::PanicInfo) -> ! {
@@ -50,7 +51,9 @@ mod tests {
 
     #[test]
     fn test_initialization() {
+        // Critical: Ensure core initializes at defined base stability
         assert_eq!(CORE_BASE, 1.0);
+        // Safety: Verify secure core threshold is operational
         assert!(SECURE_CORE > 0.0);
     }
 }
