@@ -40,12 +40,13 @@ fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
 }
 
 // --- Panic Handler for no_std ---
-// Required: Provides a landing function for fatal errors in bare-metal environments
+// Technical: Required landing function for fatal errors in no_std builds.
+// This block ensures the kernel halts safely without unwinding.
 #[cfg(not(feature = "extension-module"))]
 #[cfg(not(test))]
 #[panic_handler]
 fn panic(_info: &::core::panic::PanicInfo) -> ! {
-    // Technical: Infinite loop to halt execution on panic in no_std context
+    // Technical: Immediate halt loop to satisfy the abort requirement
     loop {}
 }
 
