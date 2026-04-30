@@ -14,8 +14,8 @@ categories = ["embedded", "no-std", "os", "algorithms"]
 [lib]
 name = "penta_v_kernel"
 path = "src/lib.rs"
-# Required: cdylib for Python, rlib for Rust static linking
-crate-type = ["cdylib", "rlib"] 
+# Technical: rlib is prioritized for tests, cdylib for Python distribution
+crate-type = ["rlib", "cdylib"] 
 
 [features]
 # Technical: Defines the extension-module feature for PyO3 support
@@ -26,9 +26,12 @@ extension-module = ["pyo3/extension-module"]
 pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 
 [profile.dev]
-# Technical: Required for no_std builds to avoid unwinding overhead
+# Technical: Force abort on panic to resolve unwinding issues in no_std/CI
 panic = "abort"
 
 [profile.release]
-# Technical: Ensures deterministic termination on panic in production
+panic = "abort"
+
+[profile.test]
+# Critical: This section forces the test runner to use abort instead of unwind
 panic = "abort"
