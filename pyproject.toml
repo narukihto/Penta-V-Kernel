@@ -1,0 +1,24 @@
+[build-system]
+# Build Requirements: Use maturin as the backend for building Rust-based Python extensions
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "penta_v_kernel"
+version = "0.2.1"
+description = "A mission-critical Geometric Stability Protocol (Python Bindings)"
+requires-python = ">=3.7"
+authors = [{name = "Issac Andrew", email = "Issaclex@proton.me"}]
+license = {text = "Apache-2.0"}
+readme = "README.md"
+keywords = ["kernel", "load-balancing", "geometry", "rust-bindings"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: System :: Networking",
+]
+
+[tool.maturin]
+# Configuration: Specifies the crate module name to match the Cargo.toml [lib] name
+module-name = "penta_v_kernel"
+features = ["extension-module"]
