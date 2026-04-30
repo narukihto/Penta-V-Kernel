@@ -1,7 +1,7 @@
 // src/lib.rs
 
-// Standard library is only required when building for Python bindings
-#![cfg_attr(not(feature = "extension-module"), no_std)] 
+// Technical: Enable no_std only when NOT building for Python extensions
+#![cfg_attr(not(feature = "extension-module"), no_std)]
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
 //!
@@ -10,11 +10,11 @@
 pub mod core;
 pub mod shapes;
 pub mod utils;
-pub mod mesh; 
+pub mod mesh;
 
-pub use core::{CORE_BASE, SECURE_CORE};
-pub use shapes::GeometricBalancer;
-pub use mesh::{StabilityPacket, MeshNode};
+pub use crate::core::{CORE_BASE, SECURE_CORE};
+pub use crate::shapes::GeometricBalancer;
+pub use crate::mesh::{StabilityPacket, MeshNode};
 
 // --- Python Bindings Section ---
 // Only compiled when the "extension-module" feature is active (via Maturin/PyPI)
@@ -23,20 +23,30 @@ use pyo3::prelude::*;
 
 #[cfg(feature = "extension-module")]
 #[pyfunction]
-/// Python Bridge: Calculates the stability impact based on geometric deficit and immunity factor
+/// Python Bridge: Calculates geometric impact based on deficit and immunity factor
 fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
-    // Technical: Direct geometric dissipation logic
+    // Technical: Direct geometric dissipation logic bridge
     Ok((deficit * 0.02) / immunity)
 }
 
 #[cfg(feature = "extension-module")]
 #[pymodule]
-/// Python Module: Defines the penta_v_kernel entry point for PyPI
+/// Python Module: Entry point for the penta_v_kernel PyPI package
 fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
-    // Exporting core constants to Python
+    // Exporting internal constants for Python accessibility
     m.add("SECURE_CORE", SECURE_CORE)?;
     Ok(())
+}
+
+// --- Panic Handler for no_std ---
+// Required: Provides a landing function for fatal errors in bare-metal environments
+#[cfg(not(feature = "extension-module"))]
+#[cfg(not(test))]
+#[panic_handler]
+fn panic(_info: &::core::panic::PanicInfo) -> ! {
+    // Technical: Infinite loop to halt execution on panic in no_std context
+    loop {}
 }
 
 // --- Internal Test Suite ---
