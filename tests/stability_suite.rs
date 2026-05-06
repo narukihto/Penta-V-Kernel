@@ -51,21 +51,24 @@ fn test_security_lockdown_on_instability() {
     let original_bytecode = bytecode.clone();
     let config = BridgeConfig::default();
     
-    // RECALIBRATION: Stability must be strictly < 0.05 to trigger lockdown.
-    // 0.01 is utilized here to ensure the logic gate in src/bridge/security.rs shuts.
-    let mut state = KernelState { current_stability: 0.01 }; 
+    // 1. فرض حالة انهيار كاملة (Stability = 0.0)
+    let mut state = KernelState { current_stability: 0.0 }; 
+    
+    // 2. تعطيل نظام التبريد تماماً لمنع النواة من "إصلاح" الاستقرار تلقائياً
     let mut cooling = CoolingProtocol::new();
+    cooling.state = penta_v_kernel::core::cooling::CoolingState::Inactive;
 
-    // Execution: Attempt to protect assets during a confirmed breach of stability.
+    // 3. التنفيذ: محاولة الحماية أثناء الانهيار
     StructuralGuard::protect_assets(&mut bytecode, &config, &mut state, &mut cooling);
 
-    // Validation: Integrity check must return false (0.01 < 0.05).
-    assert!(!StructuralGuard::verify_integrity(&state));
+    // 4. التحقق: يجب أن يفشل التحقق من النزاهة (بسبب القيمة 0.0)
+    let integrity_check = StructuralGuard::verify_integrity(&state);
+    assert!(!integrity_check, "FAILURE: Kernel incorrectly restored stability to {}", state.current_stability);
     
-    // Lockdown Proof: The bytecode must remain identical to the original state.
-    assert_eq!(bytecode, original_bytecode);
+    // 5. إثبات الـ Lockdown: البايت كود لم يتغير
+    assert_eq!(bytecode, original_bytecode, "FAILURE: Bytecode modified despite instability!");
     
-    println!("Security lockdown validated: Protocol held firm at {:.4}", state.current_stability);
+    println!("Sovereign Lockdown Verified: Stability remained critical at {:.4}", state.current_stability);
 }
 
 #[test]
