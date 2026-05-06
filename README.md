@@ -100,7 +100,7 @@ The First Architect is currently open to **Technology Acquisition** or **Full IP
 - [x] **Phase IV**: Penta-V Distributed Mesh (Inter-kernel communication).
 - [x] **Phase V**: Hardware-level integration (**FPGA / ASIC acceleration via Verilator**).
 - [x] **Phase VI**: Hyperdimensional Resonance Lattice (Sub-Geometric Coherence Substrate).
-- [ ] **Phase VII: LWE Post-Quantum Ledger Protection (Sovereign Point Security).
+- [ ] **Phase VII**: LWE Post-Quantum Ledger Protection (Sovereign Point Security).
 - [ ] **Next Steps**: Scaling for Tier-1 Infrastructure Acquisition.                                                                 
 --- 
 
