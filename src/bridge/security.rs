@@ -1,5 +1,3 @@
-// src/bridge/security.rs
-
 //! # Structural Guard & Code Obfuscation
 //! 
 //! Provides encryption layers for embedded Python bytecode, leveraging the 
@@ -16,40 +14,41 @@ pub struct StructuralGuard;
 impl StructuralGuard {
     /// Protects the embedded bytecode using a lattice-based logic approach.
     /// 
-    /// Logic:
-    /// 1. Updates system stability metrics via the Kernel Guard.
-    /// 2. Verifies that stability is above the SECURE_CORE threshold via verify_integrity.
-    /// 3. If stable: applies a XOR-based structural mask to the bytecode.
-    /// 4. If unstable: triggers a 'Lockdown' state by refusing to process or modify data.
+    /// Updated Logic (Sovereign Patch):
+    /// 1. PRE-VALIDATION: Check integrity BEFORE the Guard layer can clamp the value.
+    /// 2. If unstable: Triggers 'Lockdown' immediately, keeping bytecode untouched.
+    /// 3. If stable: Updates metrics and applies the XOR structural mask.
     pub fn protect_assets(
         bytecode: &mut [u8], 
         config: &BridgeConfig,
         state: &mut KernelState,
         cooling: &mut CoolingProtocol
     ) {
-        // 1. Integrity Check: Refresh stability state.
-        // Even with 0.0 damage, this ensures the Guard processes any pending cooling effects.
+        // --- STEP 1: PRE-VALIDATION (The Critical Fix) ---
+        // We verify integrity based on the RAW state before Guard::apply_damage_with_cooling
+        // has a chance to force the stability back up to SECURE_CORE (0.05).
+        if !Self::verify_integrity(state) {
+            // Lockdown: Bytecode remains untouched.
+            // This ensures the stability_suite passes when stability is < 0.05.
+            return;
+        }
+
+        // --- STEP 2: METRIC REFRESH ---
+        // Now that we know we are stable, we refresh the state.
         Guard::apply_damage_with_cooling(state, 0.0, cooling);
 
-        // 2. Uniform Validation: Centralized check against SECURE_CORE.
-        if Self::verify_integrity(state) {
-            // 3. Obfuscation: Apply security tier mask to the assets.
-            let mask = (config.security_tier * 255.0) as u8;
-            for byte in bytecode.iter_mut() {
-                *byte ^= mask; // Structural XOR Obfuscation
-            }
-        } else {
-            // 4. Lockdown: Bytecode remains untouched.
-            // This is the critical path for passing the stability_suite.
-            return;
+        // --- STEP 3: OBFUSCATION ---
+        // Apply security tier mask to the assets.
+        let mask = (config.security_tier * 255.0) as u8;
+        for byte in bytecode.iter_mut() {
+            *byte ^= mask; // Structural XOR Obfuscation
         }
     }
 
     /// Validates system integrity against the sovereign SECURE_CORE threshold.
-    /// 
-    /// This function is the ultimate gatekeeper for security operations.
     pub fn verify_integrity(state: &KernelState) -> bool {
-        // Alignment: The state is integral ONLY if it stays above the absolute minimum reserve.
-        state.current_stability >= crate::core::SECURE_CORE
+        // The state is integral ONLY if it stays strictly above the absolute minimum reserve.
+        // We use a strict inequality to ensure 0.05 is the true 'Lockdown' boundary.
+        state.current_stability > crate::core::SECURE_CORE
     }
 }
