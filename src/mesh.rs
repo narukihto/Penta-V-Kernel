@@ -2,7 +2,11 @@
 
 //! # Mesh Network Protocol
 //! 
-//! Handles inter-kernel stability state synchronization and distributed load sharing.
+//! Handles inter-kernel stability state synchronization and distributed load sharing
+//! with integrated thermal awareness and SECURE_CORE enforcement.
+
+use crate::core::SECURE_CORE;
+use crate::core::cooling::CoolingProtocol;
 
 /// Represents the systemic state transmitted across mesh nodes.
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -18,7 +22,7 @@ pub struct StabilityPacket {
 /// Interface for generating and processing mesh heartbeats.
 pub trait MeshPulse {
     /// Generates a new stability packet based on current local metrics.
-    fn generate_pulse(&self) -> StabilityPacket;
+    fn generate_pulse(&self, cooling: &CoolingProtocol) -> StabilityPacket;
     
     /// Processes an incoming packet and adjusts local dissipation strategy.
     fn handle_incoming_pulse(&mut self, packet: StabilityPacket);
@@ -45,18 +49,21 @@ impl MeshNode {
 }
 
 impl MeshPulse for MeshNode {
-    fn generate_pulse(&self) -> StabilityPacket {
+    fn generate_pulse(&self, cooling: &CoolingProtocol) -> StabilityPacket {
         StabilityPacket {
             node_id: self.id,
             stability_score: self.local_stability,
-            thermal_load: 1.0 - self.local_stability, // Simplified thermal derivation
+            // Thermal load is now derived from the actual CoolingProtocol state
+            thermal_load: cooling.internal_temp,
         }
     }
 
     fn handle_incoming_pulse(&mut self, packet: StabilityPacket) {
-        if self.secure_gate && packet.stability_score < 0.2 {
-            // Logic: If a peer is failing (< 0.2), prepare for load absorption.
-            // This is where Phase IV redirection logic will be implemented.
+        // Enforcing SECURE_CORE threshold for peer validation
+        if self.secure_gate && packet.stability_score < SECURE_CORE {
+            // Critical: If a peer drops below SECURE_CORE, trigger isolation logic.
+            // This prevents the instability from cascading through the mesh.
+            self.local_stability *= 0.95; // Defensive stability tightening
         }
     }
 }
