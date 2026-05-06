@@ -26,22 +26,28 @@ impl StructuralGuard {
         state: &mut KernelState,
         cooling: &mut CoolingProtocol
     ) {
-        // 1. Integrity Check: Ensure the system is above SECURE_CORE
-        // We use the Guard to apply a 'Zero-Impact' stress test before unlocking.
+        // 1. Integrity Check: Standardizing the call through verify_integrity
+        // Ensure the system is within the SECURE_CORE boundary.
         Guard::apply_damage_with_cooling(state, 0.0, cooling);
 
-        if state.current_stability > crate::core::SECURE_CORE {
+        // FIX: Using the internal verify_integrity to ensure logical alignment with tests
+        if Self::verify_integrity(state) {
             // 2. Obfuscation: Apply security tier mask
             let mask = (config.security_tier * 255.0) as u8;
             for byte in bytecode.iter_mut() {
                 *byte ^= mask; // Structural XOR Obfuscation
             }
+        } else {
+            // Logic: In case of instability, we explicitly do not touch the bytecode.
+            // This triggers the 'Lockdown' state validated in stability_suite.rs.
+            return;
         }
     }
 
     /// Validates if the binary has been tampered with by checking 
     /// geometric checksums against the SECURE_CORE.
     pub fn verify_integrity(state: &KernelState) -> bool {
+        // Alignment: Must be strictly >= to match the Kernel's safety threshold.
         state.current_stability >= crate::core::SECURE_CORE
     }
 }
