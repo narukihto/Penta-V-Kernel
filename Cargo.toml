@@ -8,8 +8,6 @@ license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com"
 homepage = "https://github.com"
-keywords = ["kernel", "load-balancing", "data-cleaning", "deployment", "resilience"]
-categories = ["embedded", "no-std", "os", "algorithms"]
 
 [lib]
 name = "penta_v_kernel"
@@ -17,29 +15,30 @@ path = "src/lib.rs"
 crate-type = ["rlib", "cdylib"] 
 
 [features]
-# Standard feature for Python extension
 extension-module = ["pyo3/extension-module"]
-# Sovereign packaging system with universal ABI compatibility
 sovereign-pack = ["pyo3/abi3-py310"]
 
 [dependencies]
-# Python Bridge: Enhanced with abi3 for universal binary compatibility
 pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 
 # --- Penta-Clean Engine Dependencies ---
-# High-performance parallel processing for geometric data cleaning
 rayon = "1.8"
 
-# In-kernel data frame processing. 
-# Fixed: Removed 'parallel' feature (deprecated in 0.36) and added performance optimizations.
-polars-core = { version = "0.36", features = ["performant", "dtype-full", "interpolate"] }
+# Polars configuration: 
+# Replaced 'dtype-full' with specific necessary types to resolve CI conflict.
+polars-core = { version = "0.36", features = [
+    "performant", 
+    "interpolate", 
+    "dtype-float", # Essential for stability_score (f64)
+    "dtype-u64",   # Essential for node_id
+    "dtype-struct" 
+] }
 
 [profile.dev]
 panic = "abort"
 
 [profile.release]
 panic = "abort"
-# Optimization for Penta-Pack: Maximum stripping for security and size reduction
 lto = true
 opt-level = 3
 strip = "symbols"
