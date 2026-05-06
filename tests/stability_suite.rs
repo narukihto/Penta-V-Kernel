@@ -11,7 +11,8 @@ use penta_v_kernel::core::cooling::CoolingProtocol;
 use penta_v_kernel::shapes::decagon::Decagon;
 use penta_v_kernel::shapes::triangle::Triangle;
 use penta_v_kernel::utils::calculator::calculate_and_apply_decay;
-use penta_v_kernel::mesh::{MeshNode, StabilityPacket};
+// CRITICAL FIX: Importing MeshPulse trait to bring methods into scope
+use penta_v_kernel::mesh::{MeshNode, StabilityPacket, MeshPulse}; 
 use penta_v_kernel::processing::{ProcessingEngine, ProcessingState};
 use penta_v_kernel::bridge::{StructuralGuard, BridgeConfig};
 use polars_core::prelude::*;
@@ -86,8 +87,10 @@ fn test_mesh_pulse_telemetry_integrity() {
     let node_id = 0xAA55;
     let mut node = MeshNode::new(node_id, true);
     node.local_stability = 0.92;
+    let cooling = CoolingProtocol::new();
 
-    let pulse = node.generate_pulse();
+    // Fix: provide required CoolingProtocol reference if defined in trait
+    let pulse = node.generate_pulse(&cooling); 
 
     assert_eq!(pulse.node_id, node_id);
     assert_eq!(pulse.stability_score, 0.92);
@@ -103,6 +106,7 @@ fn test_mesh_critical_handshake_security() {
         thermal_load: 0.90,
     };
 
+    // Works now because MeshPulse trait is in scope
     observer.handle_incoming_pulse(critical_pulse);
 
     assert!(observer.secure_gate);
