@@ -1,34 +1,36 @@
-name: Penta-V Kernel PyPI Release
+name: Penta-V Kernel Sovereign Release
 
 on:
   push:
-    branches: [ main, Heartbeat ] # Updated to include your current active branch
+    branches: [ main, Heartbeat ]
     tags:
       - 'v*'
   pull_request:
     branches: [ main ]
-  # Manual Trigger: Enables the "Run workflow" button in GitHub UI
   workflow_dispatch: 
 
 jobs:
   test:
-    name: Rust Unit & Integration Tests
+    name: Core & Stability Validation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
-      - name: Run Stability & Benchmark Tests
-        run: cargo test --verbose
+        with:
+          components: rustfmt, clippy
+      - name: Run Integrated Test Suite
+        # Testing the kernel with all feature flags to ensure DNA integrity
+        run: cargo test --verbose --all-features
 
   build_wheels:
-    name: Build Python Wheels (${{ matrix.os }})
+    name: Build Sovereign Wheels (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     needs: test
     strategy:
       matrix:
-        # Build matrix for multi-platform distribution
+        # Multi-platform distribution matrix
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Checkout Repository
@@ -37,13 +39,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Build Wheels via Maturin
+      - name: Build Global Compatibility Wheels
         uses: PyO3/maturin-action@v1
         with:
           command: build
-          # Technical: Optimization for release builds
-          args: --release --out dist
+          # Features:
+          # extension-module: Enables Python bindings
+          # sovereign-pack: Enables standalone distribution logic (ABI3)
+          args: --release --out dist --features extension-module --features sovereign-pack
           sccache: 'true'
+          manylinux: auto 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -51,21 +56,20 @@ jobs:
           path: dist
 
   publish_pypi:
-    name: Production Release (PyPI)
+    name: Sovereign PyPI Deployment
     runs-on: ubuntu-latest
     needs: build_wheels
-    # Critical: Publish only on version tags or manual trigger for testing
     if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    environment: release
     steps:
-      - name: Download Artifacts
+      - name: Download All Build Artifacts
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
           path: dist
-      - name: Publish to PyPI
+      - name: Deploy to PyPI
         uses: PyO3/maturin-action@v1
         env:
-          # Required: PYPI_API_TOKEN must be stored in Repository Secrets
           MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         with:
           command: upload
