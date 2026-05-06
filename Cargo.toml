@@ -2,7 +2,7 @@
 name = "penta_v_kernel"
 version = "0.3.0"
 edition = "2021"
-authors = ["Khalid (The First Architect) <Issaclex@proton.me>"]
+authors = ["narkato (The First Architect) <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol with Integrated Data Cleaning and Sovereign Deployment."
 license = "Apache-2.0"
 readme = "README.md"
@@ -25,13 +25,12 @@ pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 rayon = "1.8"
 
 # Polars configuration: 
-# Replaced 'dtype-full' with specific necessary types to resolve CI conflict.
+# Using confirmed available features from the CI error log.
 polars-core = { version = "0.36", features = [
     "performant", 
-    "interpolate", 
-    "dtype-float", # Essential for stability_score (f64)
-    "dtype-u64",   # Essential for node_id
-    "dtype-struct" 
+    "rows",        # Essential for dataframe manipulation
+    "zip_with",    # Useful for conditional data cleaning
+    "fmt"          # Provides display capabilities for debugging
 ] }
 
 [profile.dev]
