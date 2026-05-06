@@ -11,7 +11,8 @@ use penta_v_kernel::shapes::triangle::Triangle;
 use penta_v_kernel::shapes::decagon::Decagon;
 use penta_v_kernel::utils::calculator::calculate_and_apply_decay;
 use penta_v_kernel::processing::{PentaCleaner, ProcessingState};
-use penta_v_kernel::bridge::{SovereignPacker, BridgeConfig, StructuralGuard};
+// Removed SovereignPacker to resolve unused_imports warning as per CI logs
+use penta_v_kernel::bridge::{BridgeConfig, StructuralGuard};
 use polars_core::prelude::*;
 
 #[test]
