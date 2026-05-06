@@ -13,10 +13,14 @@ pub mod core;
 pub mod shapes;
 pub mod utils;
 pub mod mesh;
+pub mod processing; // New: Data Cleaning Module
+pub mod bridge;     // New: Sovereign Deployment Module
 
 pub use crate::core::{CORE_BASE, SECURE_CORE};
 pub use crate::shapes::GeometricBalancer;
 pub use crate::mesh::{StabilityPacket, MeshNode};
+pub use crate::processing::PentaCleaner;
+pub use crate::bridge::SovereignPacker;
 
 // --- Python Bindings Section ---
 #[cfg(feature = "extension-module")]
@@ -32,13 +36,22 @@ fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
 #[cfg(feature = "extension-module")]
 #[pymodule]
 fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    // Core Functions
     m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
     m.add("SECURE_CORE", SECURE_CORE)?;
+
+    // Registering the new Processing (Penta-Clean) Submodule
+    let processing_mod = PyModule::new_bound(m.py(), "processing")?;
+    m.add_submodule(&processing_mod)?;
+
+    // Registering the new Bridge (Penta-Pack) Submodule
+    let bridge_mod = PyModule::new_bound(m.py(), "bridge")?;
+    m.add_submodule(&bridge_mod)?;
+
     Ok(())
 }
 
 // --- Panic Handler for no_std ---
-// Only active in pure production no_std environments
 #[cfg(all(not(feature = "extension-module"), not(test), not(debug_assertions)))]
 #[panic_handler]
 fn panic(_info: &::core::panic::PanicInfo) -> ! {
