@@ -53,17 +53,19 @@ impl MeshPulse for MeshNode {
         StabilityPacket {
             node_id: self.id,
             stability_score: self.local_stability,
-            // Thermal load is now derived from the actual CoolingProtocol state
-            thermal_load: cooling.internal_temp,
+            // FIX: Derived thermal load from the available reduction_factor.
+            // Higher reduction_factor implies a cooler state.
+            thermal_load: 1.0 - cooling.reduction_factor,
         }
     }
 
     fn handle_incoming_pulse(&mut self, packet: StabilityPacket) {
-        // Enforcing SECURE_CORE threshold for peer validation
+        // Enforcing SECURE_CORE threshold for peer validation.
+        // Uses the global constant to ensure cross-module alignment.
         if self.secure_gate && packet.stability_score < SECURE_CORE {
-            // Critical: If a peer drops below SECURE_CORE, trigger isolation logic.
-            // This prevents the instability from cascading through the mesh.
-            self.local_stability *= 0.95; // Defensive stability tightening
+            // Critical: Peer failure detected.
+            // Tightening local stability to prevent cascading mesh failure.
+            self.local_stability *= 0.95; 
         }
     }
 }
