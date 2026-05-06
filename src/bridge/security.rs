@@ -27,10 +27,11 @@ impl StructuralGuard {
         state: &mut KernelState,
         cooling: &mut CoolingProtocol
     ) {
-        // 1. Integrity Check: Ensure stability is refreshed before making security decisions.
+        // 1. Integrity Check: Refresh stability state.
+        // Even with 0.0 damage, this ensures the Guard processes any pending cooling effects.
         Guard::apply_damage_with_cooling(state, 0.0, cooling);
 
-        // 2. Uniform Validation: Using verify_integrity to ensure alignment with CI tests.
+        // 2. Uniform Validation: Centralized check against SECURE_CORE.
         if Self::verify_integrity(state) {
             // 3. Obfuscation: Apply security tier mask to the assets.
             let mask = (config.security_tier * 255.0) as u8;
@@ -38,15 +39,17 @@ impl StructuralGuard {
                 *byte ^= mask; // Structural XOR Obfuscation
             }
         } else {
-            // 4. Lockdown: Bytecode remains untouched to prevent execution in an unsafe state.
-            // This explicit return is what allows the 'stability_suite' tests to pass.
+            // 4. Lockdown: Bytecode remains untouched.
+            // This is the critical path for passing the stability_suite.
             return;
         }
     }
 
     /// Validates system integrity against the sovereign SECURE_CORE threshold.
+    /// 
+    /// This function is the ultimate gatekeeper for security operations.
     pub fn verify_integrity(state: &KernelState) -> bool {
-        // Alignment: Must be strictly >= to match the Kernel's safety requirements.
+        // Alignment: The state is integral ONLY if it stays above the absolute minimum reserve.
         state.current_stability >= crate::core::SECURE_CORE
     }
 }
