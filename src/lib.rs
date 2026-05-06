@@ -10,10 +10,12 @@ pub mod core;
 pub mod shapes;
 pub mod utils;
 pub mod mesh; // Phase IV: Distributed Geometric Mesh Protocol
+pub mod resonance; // Phase VI: Hyperdimensional Resonance Lattice
 
 pub use core::{CORE_BASE, SECURE_CORE};
 pub use shapes::GeometricBalancer;
 pub use mesh::{StabilityPacket, MeshNode};
+pub use resonance::HyperdimensionalStabilizer;
 
 #[cfg(test)]
 mod tests {
