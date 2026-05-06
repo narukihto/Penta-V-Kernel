@@ -1,6 +1,6 @@
 [package]
 name = "penta_v_kernel"
-version = "0.3.0" # Updated to reflect the integrated architecture
+version = "0.3.0"
 edition = "2021"
 authors = ["Khalid (The First Architect) <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol with Integrated Data Cleaning and Sovereign Deployment."
@@ -19,8 +19,8 @@ crate-type = ["rlib", "cdylib"]
 [features]
 # Standard feature for Python extension
 extension-module = ["pyo3/extension-module"]
-# New feature for the sovereign packaging system
-sovereign-pack = ["pyo3/abi3"]
+# Sovereign packaging system with universal ABI compatibility
+sovereign-pack = ["pyo3/abi3-py310"]
 
 [dependencies]
 # Python Bridge: Enhanced with abi3 for universal binary compatibility
@@ -29,8 +29,10 @@ pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 # --- Penta-Clean Engine Dependencies ---
 # High-performance parallel processing for geometric data cleaning
 rayon = "1.8"
-# In-kernel data frame processing for speed exceeding conventional libraries
-polars-core = { version = "0.36", features = ["parallel"] }
+
+# In-kernel data frame processing. 
+# Fixed: Removed 'parallel' feature (deprecated in 0.36) and added performance optimizations.
+polars-core = { version = "0.36", features = ["performant", "dtype-full", "interpolate"] }
 
 [profile.dev]
 panic = "abort"
@@ -41,6 +43,7 @@ panic = "abort"
 lto = true
 opt-level = 3
 strip = "symbols"
+codegen-units = 1
 
 [profile.test]
 panic = "abort"
