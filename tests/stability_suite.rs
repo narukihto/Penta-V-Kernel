@@ -51,18 +51,18 @@ fn test_security_lockdown_on_instability() {
     let original_bytecode = bytecode.clone();
     let config = BridgeConfig::default();
     
-    // ADJUSTMENT: Use 0.01 to fall strictly below the SECURE_CORE threshold (0.05).
-    // This ensures verify_integrity correctly returns false for the test assertion.
+    // ADJUSTMENT: Set stability to 0.01.
+    // This is strictly below the SECURE_CORE threshold (0.05), triggering a true lockdown.
     let mut state = KernelState { current_stability: 0.01 }; 
     let mut cooling = CoolingProtocol::new();
 
-    // Execution: Attempt to protect assets during a recognized instability event.
+    // Execution: Attempt asset protection during confirmed instability.
     StructuralGuard::protect_assets(&mut bytecode, &config, &mut state, &mut cooling);
 
-    // Validation: The integrity check must fail because 0.01 < 0.05.
+    // Validation: Integrity check must now fail as 0.01 < 0.05.
     assert!(!StructuralGuard::verify_integrity(&state));
     
-    // Ensure Lockdown: Bytecode must remain unchanged from its original state.
+    // Ensure lockdown: Bytecode must remain identical to the original state.
     assert_eq!(bytecode, original_bytecode);
     
     println!("Security lockdown validated: Protocol held firm at {:.4}", state.current_stability);
