@@ -1,6 +1,6 @@
 [package]
 name = "penta_v_kernel"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Issac Andrew <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
