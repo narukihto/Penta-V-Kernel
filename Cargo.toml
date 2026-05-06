@@ -2,7 +2,7 @@
 name = "penta_v_kernel"
 version = "0.3.0"
 edition = "2021"
-authors = ["narukoto (The First Architect) <Issaclex@proton.me>"]
+authors = ["narkuto(The First Architect) <Issaclex@proton.me>"]
 description = "A mission-critical Geometric Stability Protocol with Integrated Data Cleaning and Sovereign Deployment."
 license = "Apache-2.0"
 readme = "README.md"
@@ -15,21 +15,26 @@ path = "src/lib.rs"
 crate-type = ["rlib", "cdylib"] 
 
 [features]
-# Default feature set for development and testing
+# The 'default' feature now only includes the core pyo3 functionality.
+# This ensures 'cargo test' links against the local Python binary correctly.
 default = ["pyo3"]
-# Required for building Python extension modules
+
+# 'extension-module' is now a standalone feature. 
+# It MUST be passed explicitly during 'maturin build' or 'maturin develop'.
 extension-module = ["pyo3/extension-module"]
-# Sovereign pack for specific Python ABI compatibility
+
+# Sovereign pack for specific Python ABI compatibility.
 sovereign-pack = ["pyo3/abi3-py310"]
 
 [dependencies]
-# PyO3 with auto-initialize to resolve undefined symbols during 'cargo test'
-pyo3 = { version = "0.21", features = ["extension-module", "auto-initialize"], optional = true }
+# Standard PyO3 dependency with auto-initialize. 
+# 'extension-module' is removed from here to prevent linking errors during standalone tests.
+pyo3 = { version = "0.21", features = ["auto-initialize"], optional = true }
 
 # --- Penta-Clean Engine Dependencies ---
 rayon = "1.8"
 
-# Polars configuration utilizing core features for geometric data handling
+# Polars configuration for geometric data handling and stability.
 polars-core = { version = "0.36", features = [
     "performant", 
     "rows",        
@@ -38,14 +43,14 @@ polars-core = { version = "0.36", features = [
 ] }
 
 [build-dependencies]
-# Helper crate for PyO3 build configurations and linker arguments
+# Essential helper for PyO3 build-time configuration.
 pyo3-build-config = "0.21"
 
 [profile.dev]
 panic = "abort"
 
 [profile.release]
-# Aggressive optimization for sovereign production deployment
+# Optimized for sovereign deployment and minimal binary footprint.
 panic = "abort"
 lto = true
 opt-level = 3
