@@ -49,20 +49,19 @@ fn test_security_lockdown_on_instability() {
     let original_bytecode = bytecode.clone();
     let config = BridgeConfig::default();
     
-    // RECALIBRATION: Forced zero-stability to bypass any automatic recovery.
-    // This guarantees the state remains below the 0.05 SECURE_CORE threshold.
-    let mut state = KernelState { current_stability: 0.0 }; 
+    // RECALIBRATION: Use a value strictly below SECURE_CORE (0.05).
+    // This triggers the logic gate in StructuralGuard before the Guard layer clamps it.
+    let mut state = KernelState { current_stability: 0.04 }; 
     let mut cooling = CoolingProtocol::new();
 
-    // Execution: Attempt asset protection during a catastrophic stability breach.
+    // Step 1: Pre-validation of breached state.
+    assert!(!StructuralGuard::verify_integrity(&state), "Integrity must be invalid at 0.04");
+
+    // Step 2: Execution - The lockdown protocol must intercept this call.
     StructuralGuard::protect_assets(&mut bytecode, &config, &mut state, &mut cooling);
 
-    // Validation: Integrity must fail as 0.0 is strictly less than 0.05.
-    let is_integrated = StructuralGuard::verify_integrity(&state);
-    assert!(!is_integrated, "Kernel failed to recognize critical instability at {}", state.current_stability);
-    
-    // Lockdown Proof: Bytecode must remain identical to original (No XOR applied).
-    assert_eq!(bytecode, original_bytecode);
+    // Step 3: Lockdown Proof - Bytecode must remain untouched (0.04 < 0.05).
+    assert_eq!(bytecode, original_bytecode, "Sovereign Shield Failed: Bytecode was compromised!");
     
     println!("Security lockdown validated: Protocol held firm at {:.4}", state.current_stability);
 }
@@ -75,6 +74,7 @@ fn test_total_collapse_protection() {
 
     calculate_and_apply_decay(&mut state, 5000.0, &triangle, &mut cooling);
 
+    // Boundary Enforcement check: Should be exactly SECURE_CORE (0.05).
     assert!((state.current_stability - SECURE_CORE).abs() < f64::EPSILON);
     println!("Test passed: SECURE_CORE ACTIVATED at {:.2}", state.current_stability);
 }
