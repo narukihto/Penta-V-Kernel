@@ -2,7 +2,7 @@
 name = "penta_v_kernel"
 version = "0.3.0"
 edition = "2021"
-authors = ["Issac Andrew <Issaclex@proton.me>"]
+authors = ["Issac Andrew <Issaclex@proton.me>", "Klas Segeljakt <klas.segeljakt@example.com>"]
 description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
 license = "Apache-2.0"
 readme = "README.md"
