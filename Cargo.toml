@@ -1,37 +1,46 @@
 [package]
 name = "penta_v_kernel"
-version = "0.2.3"
+version = "0.3.0" # Updated to reflect the integrated architecture
 edition = "2021"
-authors = ["Issac Andrew <Issaclex@proton.me>"]
-description = "A mission-critical Geometric Stability Protocol for kernel-level load balancing and system resilience."
+authors = ["Khalid (The First Architect) <Issaclex@proton.me>"]
+description = "A mission-critical Geometric Stability Protocol with Integrated Data Cleaning and Sovereign Deployment."
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com"
 homepage = "https://github.com"
-keywords = ["kernel", "load-balancing", "geometry", "performance", "resilience"]
+keywords = ["kernel", "load-balancing", "data-cleaning", "deployment", "resilience"]
 categories = ["embedded", "no-std", "os", "algorithms"]
 
 [lib]
 name = "penta_v_kernel"
 path = "src/lib.rs"
-# Technical: rlib is prioritized for tests, cdylib for Python distribution
 crate-type = ["rlib", "cdylib"] 
 
 [features]
-# Technical: Defines the extension-module feature for PyO3 support
+# Standard feature for Python extension
 extension-module = ["pyo3/extension-module"]
+# New feature for the sovereign packaging system
+sovereign-pack = ["pyo3/abi3"]
 
 [dependencies]
-# Python Bridge: PyO3 is optional and tied to the extension-module feature
+# Python Bridge: Enhanced with abi3 for universal binary compatibility
 pyo3 = { version = "0.21", features = ["extension-module"], optional = true }
 
+# --- Penta-Clean Engine Dependencies ---
+# High-performance parallel processing for geometric data cleaning
+rayon = "1.8"
+# In-kernel data frame processing for speed exceeding conventional libraries
+polars-core = { version = "0.36", features = ["parallel"] }
+
 [profile.dev]
-# Technical: Force abort on panic to resolve unwinding issues in no_std/CI
 panic = "abort"
 
 [profile.release]
 panic = "abort"
+# Optimization for Penta-Pack: Maximum stripping for security and size reduction
+lto = true
+opt-level = 3
+strip = "symbols"
 
 [profile.test]
-# Critical: This section forces the test runner to use abort instead of unwind
 panic = "abort"
