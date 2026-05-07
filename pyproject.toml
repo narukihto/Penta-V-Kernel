@@ -1,24 +1,42 @@
 [build-system]
-# Build Requirements: Use maturin as the backend for building Rust-based Python extensions
+# Build Requirements: Use maturin as the backend for building Rust-based Python extensions.
 requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "penta_v_kernel"
-version = "0.2.1"
-description = "A mission-critical Geometric Stability Protocol (Python Bindings)"
-requires-python = ">=3.7"
-authors = [{name = "Issac Andrew", email = "Issaclex@proton.me"}]
+name = "penta-v-kernel"
+# Version 1.1.0: Transition to Geometric Logic Validation & Adaptive Telemetry.
+version = "1.1.0" 
+description = "Mission-critical Geometric Stability Protocol with AI Logic Validation & Pythonic Resilience API"
+requires-python = ">=3.8"
+authors = [
+    {name = "Khalid", email = "Issaclex@proton.me"},
+    {name = "Issac Andrew", email = "Issaclex@proton.me"}
+]
 license = {text = "Apache-2.0"}
 readme = "README.md"
-keywords = ["kernel", "load-balancing", "geometry", "rust-bindings"]
+keywords = [
+    "penta-v", 
+    "geometric-load-balancing", 
+    "rust-pyo3", 
+    "post-quantum-safety", 
+    "telemetry"
+]
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Topic :: System :: Networking",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
 ]
 
+[project.urls]
+Homepage = "https://github.com/Penta-V-Kernel"
+Repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
+
 [tool.maturin]
-# Configuration: Specifies the crate module name to match the Cargo.toml [lib] name
+# Configuration: Matches the crate module name in Cargo.toml.
 module-name = "penta_v_kernel"
-features = ["extension-module"]
+features = ["pyo3", "extension-module"]
+# Optimization: Strip symbols to reduce binary size for high-performance deployments.
+strip = true
