@@ -101,14 +101,35 @@ fn main() {
 | **Circle** | $\infty$ | $\infty$ | **The Shield** | Asymptotic Defense |
 
 ---
+---
+
+## 🏛️ Intellectual Property & Acquisition
+> **Strategic Status:** The Penta-V Sovereign Protocol is classified as a **DeepTech IP Asset**. 
+
+While the core logic is demonstrated in this repository, the high-performance **Penta-V-HDL** (Hardware Description Language) and the **FPGA Gateware** suites are maintained within a **Private Repository** to ensure maximum valuation and competitive advantage. 
+
+### 💎 Value Proposition:
+*   **Validated Integrity:** Full RTL-to-Software cross-verification (Verilator/Cocotb) ensures zero-defect hardware logic.
+*   **Mission-Critical Ready:** Engineered for next-gen data centers, quantum-resistant gateways, and high-frequency infrastructure.
+*   **Market Positioning:** A complete, hardware-accelerated load-balancing solution ready for integration into proprietary silicon or cloud-scale FPGA clusters.
+
+The First Architect is currently open to **Technology Acquisition** or **Full IP Buyout**. For serious inquiries and access to the private HDL hierarchy, please contact through the official channels.
+
+---
+
 
 ## 📜 Roadmap
 - [x] **Phase I**: Core Geometric Logic & Pole Mathematics.
 - [x] **Phase II**: Real-time Thermal-Aware Decay Scaling & Guard Protection.
+- [x] **Phase IV**: Penta-V Distributed Mesh (Inter-kernel communication).
 - [x] **Phase IV**: Distributed Mesh & Python Ecosystem Integration.
-- [x] **Phase V**: Hardware-level Silicon Acceleration (HDL Logic).
+- [x] **Phase V**: Hardware-level integration (**FPGA / ASIC acceleration via Verilator**).
+- [x] **Phase VI**: Hyperdimensional Resonance Lattice (Sub-Geometric Coherence Substrate).
+- [ ] **Phase VII**: LWE Post-Quantum Ledger Protection (Sovereign Point Security).
+- [ ] **Next Steps**: Scaling for Tier-1 Infrastructure Acquisition.                                                                 
+--- 
 
----
+
 
 ⚖️ **License**
 Distributed under the Apache License 2.0. Created by **Isaac Andrew (The First Architect)**.
