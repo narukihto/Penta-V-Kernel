@@ -1,8 +1,8 @@
 // src/shapes/mod.rs
 
 //! Interface definitions for the geometric shapes supported by the protocol.
-//! Each shape implements the GeometricBalancer trait to provide its immunity 
-//! factor and handle load distribution logic.
+//! Each shape implements the GeometricShape trait to provide its dissipation 
+//! capacity and handle load distribution logic.
 
 pub mod triangle;
 pub mod square;
@@ -30,22 +30,20 @@ pub use circle::Circle;
 /// Trait defining the geometric stability capabilities of a shape.
 /// 
 /// Implementing this trait allows a structure to participate in the 
-/// Penta-V load distribution protocol by defining its spatial pole configuration.
-pub trait GeometricBalancer {
+/// Penta-V load distribution protocol and logic validation.
+pub trait GeometricShape: Send + Sync {
     /// Returns the number of geometric poles (N) of the shape.
-    /// This value dictates the dissipation capacity of the structure.
     fn poles(&self) -> f64;
 
-    /// Calculates the immunity factor (Φ) based on the N-pole configuration.
-    /// 
-    /// The default implementation uses the standard Φ = N / 3.0 formula,
-    /// with explicit handling for asymptotic (infinite) stability.
+    /// Calculates the dissipation capacity (formerly immunity factor) 
+    /// based on the N-pole configuration and current stability.
     #[inline(always)]
-    fn immunity_factor(&self) -> f64 {
+    fn calculate_dissipation(&self, _stability: f64) -> f64 {
         let n = self.poles();
         if n.is_infinite() {
             f64::INFINITY
         } else {
+            // Standard Dissipation Formula: Φ = N / 3.0
             n / 3.0
         }
     }
@@ -53,3 +51,6 @@ pub trait GeometricBalancer {
     /// Returns the canonical name of the geometric form.
     fn name(&self) -> &str;
 }
+
+/// Legacy Alias: Keeps backward compatibility if other modules use the old name.
+pub use GeometricShape as GeometricBalancer;
