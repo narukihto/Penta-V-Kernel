@@ -11,7 +11,7 @@ impl SovereignPacker {
         Self
     }
 
-    #[static_method]
+    #[staticmethod]
     pub fn bundle_sovereign_environment(self_contained: bool) -> PyResult<()> {
         if !self_contained {
             return Ok(());
@@ -24,7 +24,7 @@ impl SovereignPacker {
         })
     }
 
-    #[static_method]
+    #[staticmethod]
     pub fn freeze_logic(script_source: &str) -> Vec<u8> {
         script_source.as_bytes().to_vec() 
     }
