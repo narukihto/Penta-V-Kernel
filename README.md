@@ -38,6 +38,25 @@ In version **v0.2.1**, Penta-V transcends the boundaries of low-level systems. W
 *   **Secure Peering:** Trust-boundary enforcement via the `secure_gate` protocol.
 
 ---
+---
+
+## 🛰️ Phase IV: Distributed Geometric Mesh
+In version **v0.2.0**, we introduced the **Distributed Mesh Protocol**. Kernels can now communicate their stability states across a network, allowing for proactive load sharing and systemic immunity synchronization.
+
+*   **Stability Packets:** Zero-allocation telemetry for inter-kernel sync.
+*   **Mesh Heartbeats:** Proactive health signals to prevent localized core collapse.
+*   **Secure Peering:** Trust-boundary enforcement via the `secure_gate` protocol.
+
+---
+
+## 🌌 Phase VI: Hyperdimensional Resonance Lattice (HRL)
+In version **v0.3.0**, we introduced the **HRL Substrate**. While Phases I–V govern the macro-topology of load dissipation, Phase VI introduces micro-coherence at the sub-geometric level.
+
+*   **Stability Operator $\Xi$:** A cryptographic-grade certificate ensuring that no decoherence is introduced by defensive layers (Guard/Cooling).
+*   **Phase-Invariant Identity:** Mathematical proof that $\Xi(\Psi) \equiv \Psi$ within machine epsilon, securing the system against silent data corruption.
+*   **Zero-Allocation Pipeline:** Stack-resident harmonic vectors ensure sub-microsecond latency during high-stress transitions.
+
+---
 
 ## 🚀 Installation & Usage
 
