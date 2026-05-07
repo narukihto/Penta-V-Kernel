@@ -13,14 +13,20 @@ pub mod core;
 pub mod shapes;
 pub mod utils;
 pub mod mesh;
-pub mod processing; // New: Data Cleaning Module
-pub mod bridge;     // New: Sovereign Deployment Module
+pub mod processing; 
+pub mod bridge;     
 
+// Sovereign Exports
 pub use crate::core::{CORE_BASE, SECURE_CORE};
 pub use crate::shapes::GeometricBalancer;
 pub use crate::mesh::{StabilityPacket, MeshNode};
 pub use crate::processing::PentaCleaner;
-pub use crate::bridge::SovereignPacker;
+pub use crate::bridge::{
+    SovereignPacker, 
+    LogicSignature, 
+    GeometricValidator, 
+    HeartbeatMonitor
+};
 
 // --- Python Bindings Section ---
 #[cfg(feature = "extension-module")]
@@ -36,16 +42,19 @@ fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
 #[cfg(feature = "extension-module")]
 #[pymodule]
 fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    // Core Functions
+    // Core Constants & Functions
     m.add_function(wrap_pyfunction!(calculate_impact, m)?)?;
     m.add("SECURE_CORE", SECURE_CORE)?;
 
-    // Registering the new Processing (Penta-Clean) Submodule
-    let processing_mod = PyModule::new_bound(m.py(), "processing")?;
-    m.add_submodule(&processing_mod)?;
+    // Registering the Bridge (Penta-Pack) Classes directly for easier Python access
+    m.add_class::<LogicSignature>()?;
+    m.add_class::<HeartbeatMonitor>()?;
+    m.add_class::<SovereignPacker>()?;
 
-    // Registering the new Bridge (Penta-Pack) Submodule
+    // Submodule Registration for organizational clarity
     let bridge_mod = PyModule::new_bound(m.py(), "bridge")?;
+    bridge_mod.add_class::<LogicSignature>()?;
+    bridge_mod.add_class::<HeartbeatMonitor>()?;
     m.add_submodule(&bridge_mod)?;
 
     Ok(())
