@@ -1,3 +1,5 @@
+// src/bridge/mod.rs
+
 //! # Penta-Pack: Sovereign Bridge Module
 //! 
 //! This module orchestrates the packaging of Python logic into a standalone 
@@ -15,33 +17,29 @@ pub use telemetry::HeartbeatMonitor;
 
 use pyo3::prelude::*;
 
-/// Configuration for the sovereign deployment process.
+#[pyclass]
 #[derive(Clone)]
 pub struct BridgeConfig {
-    /// If true, embeds the Python interpreter directly into the binary.
+    #[pyo3(get, set)]
     pub self_contained: bool,
-    /// Encryption level for the structural obfuscation (0.0 to 1.0).
+    #[pyo3(get, set)]
     pub security_tier: f64,
+}
+
+#[pymethods]
+impl BridgeConfig {
+    #[new]
+    pub fn new(self_contained: bool, security_tier: f64) -> Self {
+        Self { self_contained, security_tier }
+    }
 }
 
 impl Default for BridgeConfig {
     fn default() -> Self {
         Self {
             self_contained: true,
-            security_tier: 0.8, // High-security by default
+            security_tier: 0.8,
         }
     }
 }
 
-/// Registers the bridge modules into the Python environment via PyO3.
-#[pymodule]
-pub fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    // Logic Validation & Telemetry Classes
-    m.add_class::<LogicSignature>()?;
-    m.add_class::<HeartbeatMonitor>()?;
-    
-    // Deployment & Packaging Classes
-    m.add_class::<SovereignPacker>()?;
-    
-    Ok(())
-}
