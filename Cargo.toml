@@ -4,7 +4,7 @@ name = "penta_v_kernel"
 version = "0.4.0"
 edition = "2021"
 authors = [
-    "Khalid (The First Architect) <Issaclex@proton.me>",
+    "issac Andrew  (The First Architect) <Issaclex@proton.me>",
     "Klas Segeljakt <klas.segeljakt@example.com>"
 ]
 description = "Universal Sovereign Engine for Geometric Stability. Solving the AI-Deficit, Legacy Migration Hell, and Data Corruption. Optimized for Game Engines, Big Data, Cyber-Security, and High-Performance Backend Systems."
