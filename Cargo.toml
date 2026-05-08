@@ -1,14 +1,39 @@
 [package]
 name = "penta_v_kernel"
-# Version 1.1.0: Implementation of Logic Validation and Legacy Telemetry.
-version = "1.1.0"
+# Version 0.4.0: The Resonance Era - Universal Stability for Games, Data, & Backend.
+version = "0.4.0"
 edition = "2021"
-authors = ["Khalid (The First Architect) <Issaclex@proton.me>"]
-description = "A mission-critical Geometric Stability Protocol with AI Logic Validation and Sovereign Deployment."
+authors = [
+    "Khalid (The First Architect) <Issaclex@proton.me>",
+    "Klas Segeljakt <klas.segeljakt@example.com>"
+]
+description = "Universal Sovereign Engine for Geometric Stability. Solving the AI-Deficit, Legacy Migration Hell, and Data Corruption. Optimized for Game Engines, Big Data, Cyber-Security, and High-Performance Backend Systems."
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
 homepage = "https://github.com/Penta-V-Kernel"
+
+# --- The Universal Industry Keywords (Max SEO) ---
+keywords = [
+    "gamedev", "data-science", "backend", "cybersecurity", "rust", 
+    "python", "big-data", "game-engine", "machine-learning", "performance",
+    "real-time", "distributed-systems", "data-cleaning", "fintech", "iot",
+    "high-concurrency", "low-latency", "ai-safety", "sovereign-tech", "parallel-computing"
+]
+
+categories = [
+    "cryptography",
+    "algorithms",
+    "embedded-software",
+    "os",
+    "science",
+    "data-structures",
+    "development-tools",
+    "api-bindings",
+    "rendering",
+    "web-programming",
+    "database-implementations"
+]
 
 [lib]
 name = "penta_v_kernel"
@@ -30,10 +55,10 @@ sovereign-pack = ["pyo3/abi3-py310"]
 pyo3 = { version = "0.21", features = ["auto-initialize"], optional = true }
 
 # --- Penta-Clean & Core Dependencies ---
-# Rayon handles parallel geometric dissipation tasks.
+# Rayon handles parallel geometric dissipation tasks across the HRL for Game/Data loads.
 rayon = "1.8"
 
-# Polars core for high-performance data sanitization.
+# Polars core for high-performance data sanitization and sub-microsecond latency.
 polars-core = { version = "0.36", features = [
     "performant", 
     "rows",        
@@ -42,20 +67,21 @@ polars-core = { version = "0.36", features = [
 ] }
 
 [build-dependencies]
-# Essential for linking and PyO3 configuration.
+# Essential for linking and PyO3 configuration for sovereign deployment.
 pyo3-build-config = "0.21"
 
 [profile.dev]
-# Enforce abort on panic to maintain kernel state integrity.
+# Enforce abort on panic to maintain kernel state integrity during development.
 panic = "abort"
 
 [profile.release]
-# Sovereign Deployment Optimizations.
+# Sovereign Deployment Optimizations for Hyperdimensional Coherence.
 panic = "abort"
-lto = true             # Link-Time Optimization for maximum performance.
+lto = true             # Link-Time Optimization for absolute performance.
 opt-level = 3          # Max optimization for speed.
-strip = "symbols"      # Minimal binary footprint.
-codegen-units = 1      # Enhance LTO effectiveness.
+strip = "symbols"      # Minimal binary footprint for Edge/IoT and Games.
+codegen-units = 1      # Enhance LTO effectiveness for Phase VI logic.
 
 [profile.test]
+# Maintain deterministic behavior during HRL stability tests.
 panic = "abort"
