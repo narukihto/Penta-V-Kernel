@@ -16,27 +16,38 @@ authors = [
 license = {text = "Apache-2.0"}
 readme = "README.md"
 
-# --- The Universal Industry Keywords (Max SEO for Python/PyPI) ---
+# --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization for Python/PyPI) ---
 keywords = [
+    "rust", 
+    "python-bindings", 
+    "blockchain", 
+    "web3", 
+    "smart-contracts", 
     "gamedev", 
     "data-science", 
     "backend", 
     "cybersecurity", 
-    "rust", 
-    "python-bindings", 
+    "deeptech", 
+    "post-quantum", 
     "big-data", 
     "game-engine", 
     "ai-safety", 
-    "performance",
+    "performance", 
     "real-time", 
     "distributed-systems", 
     "data-cleaning", 
     "fintech", 
-    "iot",
+    "iot", 
     "high-concurrency", 
     "low-latency", 
     "sovereign-tech", 
-    "parallel-computing"
+    "parallel-computing", 
+    "decentralized",
+    "systems-programming",
+    "scalability",
+    "resource-migration",
+    "no-std",
+    "stability-protocol"
 ]
 
 classifiers = [
