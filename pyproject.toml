@@ -5,38 +5,65 @@ build-backend = "maturin"
 
 [project]
 name = "penta-v-kernel"
-# Version 1.1.0: Transition to Geometric Logic Validation & Adaptive Telemetry.
-version = "1.1.0" 
-description = "Mission-critical Geometric Stability Protocol with AI Logic Validation & Pythonic Resilience API"
-requires-python = ">=3.8"
+# Version 0.4.0: The Resonance Era - Universal Stability for Games, Data, & Backend.
+version = "0.4.0" 
+description = "Universal Sovereign Engine for Geometric Stability, AI-Logic Validation, and High-Performance Resource Migration across Python and Rust."
+requires-python = ">=3.10"
 authors = [
-    {name = "Khalid", email = "Issaclex@proton.me"},
-    {name = "Issac Andrew", email = "Issaclex@proton.me"}
+    {name = "Khalid (The First Architect)", email = "Issaclex@proton.me"},
+    {name = "Klas Segeljakt", email = "klas.segeljakt@example.com"}
 ]
 license = {text = "Apache-2.0"}
 readme = "README.md"
+
+# --- The Universal Industry Keywords (Max SEO for Python/PyPI) ---
 keywords = [
-    "penta-v", 
-    "geometric-load-balancing", 
-    "rust-pyo3", 
-    "post-quantum-safety", 
-    "telemetry"
+    "gamedev", 
+    "data-science", 
+    "backend", 
+    "cybersecurity", 
+    "rust", 
+    "python-bindings", 
+    "big-data", 
+    "game-engine", 
+    "ai-safety", 
+    "performance",
+    "real-time", 
+    "distributed-systems", 
+    "data-cleaning", 
+    "fintech", 
+    "iot",
+    "high-concurrency", 
+    "low-latency", 
+    "sovereign-tech", 
+    "parallel-computing"
 ]
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Rust",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Topic :: Games/Entertainment",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Security :: Cryptography",
     "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
 ]
 
 [project.urls]
 Homepage = "https://github.com/Penta-V-Kernel"
 Repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
+Documentation = "https://github.com/Penta-V-Kernel/Penta-V-Kernel/blob/main/README.md"
 
 [tool.maturin]
 # Configuration: Matches the crate module name in Cargo.toml.
 module-name = "penta_v_kernel"
-features = ["pyo3", "extension-module"]
-# Optimization: Strip symbols to reduce binary size for high-performance deployments.
+features = ["pyo3", "extension-module", "sovereign-pack"]
+# Optimization: Strip symbols to reduce binary size for high-performance deployments and games.
 strip = true
