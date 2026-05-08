@@ -13,12 +13,15 @@ readme = "README.md"
 repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
 homepage = "https://github.com/Penta-V-Kernel"
 
-# --- The Universal Industry Keywords (Max SEO) ---
+
+# --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization) ---
 keywords = [
-    "gamedev", "data-science", "backend", "cybersecurity", "rust", 
-    "python", "big-data", "game-engine", "machine-learning", "performance",
-    "real-time", "distributed-systems", "data-cleaning", "fintech", "iot",
-    "high-concurrency", "low-latency", "ai-safety", "sovereign-tech", "parallel-computing"
+    "rust", "python", "gamedev", "data-science", "backend", 
+    "cybersecurity", "deeptech", "post-quantum", "big-data", "game-engine", 
+    "machine-learning", "performance", "systems-programming", "real-time", "distributed-systems", 
+    "data-cleaning", "fintech", "edge-computing", "low-latency", "geometric-logic", 
+    "scalability", "resource-migration", "no-std", "iot", "kernel-security", 
+    "stability-protocol", "high-concurrency", "ai-safety", "sovereign-tech", "parallel-computing"
 ]
 
 categories = [
