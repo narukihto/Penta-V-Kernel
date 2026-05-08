@@ -16,12 +16,13 @@ homepage = "https://github.com/Penta-V-Kernel"
 
 # --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization) ---
 keywords = [
-    "rust", "python", "gamedev", "data-science", "backend", 
-    "cybersecurity", "deeptech", "post-quantum", "big-data", "game-engine", 
-    "machine-learning", "performance", "systems-programming", "real-time", "distributed-systems", 
-    "data-cleaning", "fintech", "edge-computing", "low-latency", "geometric-logic", 
-    "scalability", "resource-migration", "no-std", "iot", "kernel-security", 
-    "stability-protocol", "high-concurrency", "ai-safety", "sovereign-tech", "parallel-computing"
+    "rust", "python", "blockchain", "web3", "smart-contracts", 
+    "gamedev", "data-science", "backend", "cybersecurity", "deeptech", 
+    "post-quantum", "big-data", "game-engine", "machine-learning", "performance", 
+    "systems-programming", "real-time", "distributed-systems", "data-cleaning", "fintech", 
+    "edge-computing", "low-latency", "geometric-logic", "scalability", "resource-migration", 
+    "no-std", "iot", "kernel-security", "stability-protocol", "high-concurrency", 
+    "ai-safety", "sovereign-tech", "parallel-computing", "decentralized"
 ]
 
 categories = [
