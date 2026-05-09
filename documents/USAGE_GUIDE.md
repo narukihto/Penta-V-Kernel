@@ -65,13 +65,14 @@ fn secure_operation() {
 *Focus: DDoS Mitigation, Distributed Mesh, and Integrity Tests.*
 
 ### A. Activating the Distributed Mesh
+```
 use penta_v_kernel::mesh::MeshNode;
 let mut node = MeshNode::initialize(0xAA55);
 node.broadcast_pulse();
-
+```
 ### B. Running Integrity Audits
 # Verify system resilience against decagon-level stress attacks
-cargo test --test stability_suite test_decagon_stress_attack
+```cargo test --test stability_suite test_decagon_stress_attack```
 
 ---
 
@@ -93,5 +94,5 @@ Before deploying Penta-V to production, every architect must pass the Sovereign 
 3. Stress Test: test_total_collapse_protection
 
 # Execute the Trinity Test
-cargo test
+```cargo test```
 "The code is not just executed; it is governed." — The First Architect
