@@ -27,10 +27,4 @@ def shielded_ai_task(data):
         # Trigger Geometric Lockdown via guard.rs
         raise SystemError("AI Logic Rejected: Geometric Incoherence")
 ```
-Need,Module,Path
-Logic Cleanup,cleaner.rs,src/processing/cleaner.rs
-DDoS Defense,guard.rs,src/core/guard.rs
-AI Validation,validator.rs,src/bridge/validator.rs
-Telemetry,telemetry.rs,src/bridge/telemetry.rs
-Network Sync,mesh.rs,src/mesh.rs
-Stability Proof,resonance.rs,src/resonance.rst Architect
+
