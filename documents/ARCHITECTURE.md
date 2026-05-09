@@ -1,5 +1,5 @@
-# 🏛️ Penta-V Kernel Architecture (v0.4.0)
-## Phase VI: Hyperdimensional Resonance Lattice (HRL)
+# 📖 The Penta-V Sovereign Documentation | Vol. II
+## 🏗️ Part 2:
 
 ## 1. Overview
 The **Penta-V Kernel** is a universal, sovereign infrastructure engine designed to govern system stability through **Geometric Load Dissipation**. Unlike traditional kernels that fail under linear stress, Penta-V treats every system shock as a "Geometric Deficit." By shifting the system state across a Hyperdimensional Resonance Lattice (HRL), it ensures absolute equilibrium for Games, Blockchains, and AI-driven backends.
