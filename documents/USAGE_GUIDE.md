@@ -13,20 +13,31 @@ Since Penta-V provides pre-compiled binaries via Maturin, your focus is on wrapp
 ### A. Protecting AI-Generated Code
 Use the validator.rs logic exposed to Python to ensure AI outputs don't drift.
 
+```python
 import penta_v_kernel
 from penta_v_kernel.bridge import LogicSignature, SovereignPacker
 
+# Wrap autonomous logic
 def shielded_ai_task(data):
+    # Verify the geometric integrity before processing
     sig = LogicSignature(data, stability_threshold=0.85)
     if sig.is_valid():
         packer = SovereignPacker()
         return packer.pack_sovereign_data(data)
     else:
+        # Trigger Geometric Lockdown via guard.rs
         raise SystemError("AI Logic Rejected: Geometric Incoherence")
-
 ### B. High-Speed Data Purification
 purified_data = penta_v_kernel.purify(raw_data, shape="hexagon")
 
+```
+B. High-Speed Data Purification
+Leverage cleaner.rs to scrub massive datasets (Polars-integrated).
+
+```Python
+# Purify data through the Hexagon Pole for balanced stability
+purified_data = penta_v_kernel.purify(raw_data, shape="hexagon")
+```
 ---
 
 ## 🦀 2. For Rust Systems Engineers
@@ -35,20 +46,19 @@ purified_data = penta_v_kernel.purify(raw_data, shape="hexagon")
 You are working directly with the core and shapes modules. Your goal is to maximize throughput and maintain the SECURE_CORE.
 
 ### A. Implementing Custom Geometric Defense
+```
 use penta_v_kernel::shapes::dodecagon::Dodecagon;
 use penta_v_kernel::core::guard::Guard;
 
 fn secure_operation() {
     let mut defender = Dodecagon::new();
     let status = Guard::enforce(&mut defender);
-    if status.is_optimal() { /* execution allowed */ }
+    
+    if status.is_optimal() {
+        // High-stress execution allowed
+    }
 }
-
-### B. Managing Computational Heat
-use penta_v_kernel::core::cooling::ThermalManager;
-let mut thermal = ThermalManager::new();
-thermal.apply_cooling(0.05);
-
+```
 ---
 
 ## 🛡️ 3. For Cyber-Security & DevOps Engineers
@@ -84,5 +94,4 @@ Before deploying Penta-V to production, every architect must pass the Sovereign 
 
 # Execute the Trinity Test
 cargo test
-
 "The code is not just executed; it is governed." — The First Architect
