@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Core & Stability Validation
+    name: Core, Stability & Performance Validation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -29,12 +29,26 @@ jobs:
           python-version: '3.10'
 
       - name: Run Integrated Test Suite
-        # We test the 1.1.0 logic (Validator + Telemetry) using local Python symbols
+        # Testing v0.4.0 logic (HRL + Validator) using local Python symbols
         run: cargo test --verbose --features default
 
       - name: Verify Sovereign Integration
-        # Explicitly run the new integration suite to ensure AI Logic Validation works
+        # Ensuring AI Logic Validation and Blockchain synergy
         run: cargo test --test integration_suite --features default
+
+      - name: Execute Sovereign Benchmarks
+        # Captures the sub-nanosecond performance (HRL Resonance Pass)
+        # We use continue-on-error so benchmarks don't block the release if stats slightly deviate
+        run: |
+          cargo bench --bench resonance_bench -- --output-format bencher | tee benchmark_result.txt
+        continue-on-error: true
+
+      - name: Upload Performance Artifacts
+        # Stores Criterion HTML reports (Violin plots/graphs) for documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: resonance-performance-report
+          path: target/criterion/
 
   build_wheels:
     name: Build Sovereign Wheels (${{ matrix.os }})
@@ -56,7 +70,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: build
-          # version 1.1.0 with extension-module for production
+          # Version 0.4.0 with HRL & Sovereign-pack features
           args: --release --out dist --features extension-module --features sovereign-pack
           sccache: 'true'
           manylinux: auto 
