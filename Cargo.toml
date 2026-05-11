@@ -13,24 +13,52 @@ readme = "README.md"
 repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
 homepage = "https://github.com/Penta-V-Kernel"
 
-# --- Metadata & SEO Keywords ---
 keywords = [
-    "rust", "python", "blockchain", "web3", "smart-contracts", 
-    "gamedev", "data-science", "backend", "cybersecurity", "deeptech", 
-    "post-quantum", "big-data", "game-engine", "machine-learning", "performance", 
-    "systems-programming", "real-time", "distributed-systems", "data-cleaning", "fintech", 
-    "edge-computing", "low-latency", "geometric-logic", "scalability", "resource-migration", 
-    "no-std", "iot", "kernel-security", "stability-protocol", "high-concurrency", 
-    "ai-safety", "sovereign-tech", "parallel-computing", "decentralized"
+    # Core Infrastructure & Performance
+    "rust", "python", "performance", "systems-programming", "low-latency", 
+    "no-std", "kernel-security", "stability-protocol", "high-concurrency",
+    "parallel-computing", "scalability", "real-time", "distributed-systems",
+
+    # AI & Machine Learning (Targeting AI Developers)
+    "llmops", "inference-optimization", "ai-alignment", "deterministic-ai", 
+    "neural-governance", "model-reliability", "vector-acceleration", "tensor-guard", 
+    "autonomous-safety", "logic-anchoring", "ai-immune-system", "computational-integrity", 
+    "high-speed-inference", "automated-sanitization", "predictive-stability", "ai-shield", 
+    "runtime-verification", "machine-learning-infrastructure", "data-integrity", 
+    "sub-nanosecond-validation", "ai-robustness", "machine-learning", "data-science", "data-cleaning",
+
+    # Specialized Tech & Sovereignty
+    "deeptech", "post-quantum", "sovereign-tech", "geometric-logic", "cybersecurity",
+    "edge-computing", "resource-migration", "iot",
+
+    # Web3 & Decentralization
+    "blockchain", "web3", "smart-contracts", "decentralized", "fintech", "big-data",
+
+    # Industry Applications
+    "gamedev", "game-engine"
 ]
 
 categories = [
+    # Primary Domain
+    "artificial-intelligence",
+    "machine-learning-ops",
     "cryptography",
     "algorithms",
-    "embedded-software",
+    
+    # Systems & Architecture
     "os",
-    "science",
+    "embedded-software",
+    "hardware-acceleration",
     "data-structures",
+    "logic-synthesis",
+    
+    # Reliability & Science
+    "formal-verification",
+    "trustworthy-ai",
+    "systems-safety",
+    "science",
+    
+    # Tooling & Interface
     "development-tools",
     "api-bindings",
     "rendering",
