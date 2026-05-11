@@ -221,16 +221,25 @@ Penta-V is engineered for universal sovereignty. It maintains bit-identical reso
 
 ---
 
-## 🤝 11. Contribution: Join the Architecture
+## 🤝 11. Contribution & Architectural Support
 
-We do not seek "users"; we seek **Architects**. If you possess the mathematical rigor and the sovereign mindset required to enhance the Geometric Manifold, your pull requests are welcome.
+We do not seek "users"; we seek **Architects**. If you possess the mathematical rigor and the sovereign mindset required to enhance the Geometric Manifold, your collaboration is the next step in our evolution.
 
-### 🏛️ The Protocol for Contribution:
+### 🏛️ The Protocol for Contribution
 1. **Fork the Protocol:** Create your own branch of the sovereign substrate.
 2. **Implement your Geometric Pole:** Add new shapes or dissipation logic in `src/shapes/`.
 3. **Ensure Coherence:** Every contribution must pass the **Phase VI Resonance** test suite.
-4. **Submit for Architectural Review:** All PRs are subject to rigorous verification by the First Architect.
+4. **Submit for Architectural Review:** All PRs are subject to rigorous verification by the First Architect to ensure no logic-drift.
 
+---
+
+### 💎 Support the Architect
+To maintain the purity of the **Penta-V Sovereign Research** and accelerate the transition to **Phase VII (Quantum Sovereignty)**, you can fuel the architecture directly. 
+
+**Sovereign Contribution Address (ETH/ERC-20):**
+`0xd3Cb483597E5726903d260B77096bCb6E8C158A9`
+
+> "True architecture is funded by those who understand that stability is the only currency of the future." — The First Architect
 ---
 
 ## 📜 12. Final Certification & License
