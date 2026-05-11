@@ -18,36 +18,29 @@ readme = "README.md"
 
 # --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization for Python/PyPI) ---
 keywords = [
-    "rust", 
-    "python-bindings", 
-    "blockchain", 
-    "web3", 
-    "smart-contracts", 
-    "gamedev", 
-    "data-science", 
-    "backend", 
-    "cybersecurity", 
-    "deeptech", 
-    "post-quantum", 
-    "big-data", 
-    "game-engine", 
-    "ai-safety", 
-    "performance", 
-    "real-time", 
-    "distributed-systems", 
-    "data-cleaning", 
-    "fintech", 
-    "iot", 
-    "high-concurrency", 
-    "low-latency", 
-    "sovereign-tech", 
-    "parallel-computing", 
-    "decentralized",
-    "systems-programming",
-    "scalability",
-    "resource-migration",
-    "no-std",
-    "stability-protocol"
+    # Core Languages & Performance
+    "rust", "python-bindings", "performance", "low-latency", "high-concurrency", 
+    "parallel-computing", "systems-programming", "no-std", "real-time",
+
+    # AI & Machine Learning Sovereignty (The AI Developer Magnet)
+    "ai-safety", "llmops", "inference-optimization", "ai-alignment", 
+    "deterministic-ai", "neural-governance", "model-reliability", "vector-acceleration", 
+    "tensor-guard", "autonomous-safety", "logic-anchoring", "ai-immune-system", 
+    "computational-integrity", "high-speed-inference", "automated-sanitization", 
+    "predictive-stability", "ai-shield", "runtime-verification", "ai-robustness",
+    "data-science", "data-cleaning", "machine-learning",
+
+    # Infrastructure & Specialized Tech
+    "deeptech", "post-quantum", "cybersecurity", "distributed-systems", 
+    "sovereign-tech", "stability-protocol", "scalability", "resource-migration", 
+    "iot", "geometric-logic",
+
+    # Web3 & Emerging Markets
+    "blockchain", "web3", "smart-contracts", "decentralized", "fintech", 
+    "big-data", "backend",
+
+    # Creative & Simulation
+    "gamedev", "game-engine"
 ]
 
 classifiers = [
