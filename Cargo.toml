@@ -13,7 +13,7 @@ readme = "README.md"
 repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
 homepage = "https://github.com/Penta-V-Kernel"
 
-
+# --- Metadata & SEO Keywords ---
 keywords = [
     "rust", "python", "blockchain", "web3", "smart-contracts", 
     "gamedev", "data-science", "backend", "cybersecurity", "deeptech", 
@@ -38,110 +38,35 @@ categories = [
     "database-implementations"
 ]
 
-
-[[bench]]
-name = "resonance_bench"
-harness = false
-
-[dev-dependencies]
-criterion = { version = "0.5", features = ["html_reports"] }
-
+# --- Binary & Library Config ---
 [lib]
 name = "penta_v_kernel"
 path = "src/lib.rs"
 crate-type = ["rlib", "cdylib"] 
 
-[features]
-default = ["pyo3"]
-extension-module = ["pyo3/extension-module"]
-sovereign-pack = ["pyo3/abi3-py310"]
-
-[dependencies]
-pyo3 = { version = "0.21", features = ["auto-initialize"], optional = true }
-rayon = "1.8"
-polars-core = { version = "0.36", features = ["performant", "rows", "zip_with", "fmt"] }
-
-[build-dependencies]
-pyo3-build-config = "0.21"
-
-[profile.dev]
-panic = "abort"
-
-[profile.release]
-panic = "abort"
-lto = true
-opt-level = 3
-strip = "symbols"
-codegen-units = 1
-
-[profile.test]
-panic = "abort" [package]
-name = "penta_v_kernel"
-# Version 0.4.0: The Resonance Era - Universal Stability for Games, Data, & Backend.
-version = "0.4.0"
-edition = "2021"
-authors = [
-    "Issac Andrew (The First Architect) <Issaclex@proton.me>",
-    "Klas Segeljakt <klas.segeljakt@example.com>"
-]
-description = "Universal Sovereign Engine for Geometric Stability. Solving the AI-Deficit, Legacy Migration Hell, and Data Corruption. Optimized for Game Engines, Big Data, Cyber-Security, and High-Performance Backend Systems."
-license = "Apache-2.0"
-readme = "README.md"
-repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
-homepage = "https://github.com/Penta-V-Kernel"
-
-
-keywords = [
-    "rust", "python", "blockchain", "web3", "smart-contracts", 
-    "gamedev", "data-science", "backend", "cybersecurity", "deeptech", 
-    "post-quantum", "big-data", "game-engine", "machine-learning", "performance", 
-    "systems-programming", "real-time", "distributed-systems", "data-cleaning", "fintech", 
-    "edge-computing", "low-latency", "geometric-logic", "scalability", "resource-migration", 
-    "no-std", "iot", "kernel-security", "stability-protocol", "high-concurrency", 
-    "ai-safety", "sovereign-tech", "parallel-computing", "decentralized"
-]
-
-categories = [
-    "cryptography",
-    "algorithms",
-    "embedded-software",
-    "os",
-    "science",
-    "data-structures",
-    "development-tools",
-    "api-bindings",
-    "rendering",
-    "web-programming",
-    "database-implementations"
-]
-
-
-
 [[bench]]
 name = "resonance_bench"
 harness = false
 
-[dev-dependencies]
-criterion = { version = "0.5", features = ["html_reports"] }
-
-[lib]
-name = "penta_v_kernel"
-path = "src/lib.rs"
-crate-type = ["rlib", "cdylib"] 
-
+# --- Features & Integration ---
 [features]
 default = ["pyo3"]
 extension-module = ["pyo3/extension-module"]
 sovereign-pack = ["pyo3/abi3-py310"]
 
+# --- Dependencies ---
 [dependencies]
 pyo3 = { version = "0.21", features = ["auto-initialize"], optional = true }
 rayon = "1.8"
 polars-core = { version = "0.36", features = ["performant", "rows", "zip_with", "fmt"] }
 
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
 [build-dependencies]
 pyo3-build-config = "0.21"
 
+# --- Profiles & Performance Optimizations ---
 [profile.dev]
 panic = "abort"
 
