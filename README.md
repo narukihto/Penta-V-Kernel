@@ -180,6 +180,7 @@ The following evidence, captured directly from our **GitHub Actions CI**, confir
 
 ![Resonance Bench Result](documents/resonance_bench.png
 ) 
+
 *Figure 1: Criterion benchmark verifying 1ns/iter latency on the Sovereign Core.*
 
 ### 📊 Performance Metrics Breakdown
