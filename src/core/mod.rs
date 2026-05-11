@@ -8,6 +8,12 @@
 pub mod guard;
 pub mod cooling; 
 
+// --- Re-exports for Sovereign Accessibility ---
+// This allows external crates and benchmarks to use:
+// `penta_v_kernel::core::Guard` instead of `penta_v_kernel::core::guard::Guard`
+pub use guard::Guard;
+pub use cooling::CoolingProtocol;
+
 /// The initial base stability of the kernel (1.0).
 pub const CORE_BASE: f64 = 1.0;
 
@@ -35,6 +41,11 @@ impl Default for KernelState {
 }
 
 impl KernelState {
+    /// Initializes a new KernelState at the unitary stability baseline.
+    pub fn new() -> Self {
+        Self::default()
+    }
+
     /// Returns `true` if the kernel stability is at or below the SECURE_CORE threshold.
     #[inline(always)]
     pub fn is_critical(&self) -> bool {
