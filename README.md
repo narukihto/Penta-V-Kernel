@@ -178,7 +178,7 @@ Every line of code in Penta-V is baptized in fire. Our automated pipeline ensure
 ### ⚡ Performance Evidence: The 1ns Barrier
 The following evidence, captured directly from our **GitHub Actions CI**, confirms that the kernel operates at the theoretical limits of modern silicon.
 
-![Resonance Bench Result](<img width="587" height="130" alt="image" src="https://github.com/user-attachments/assets/e7d11849-5556-4a56-a345-6edcfe52acd2" />
+![Resonance Bench Result](resonance_bench.png
 ) 
 *Figure 1: Criterion benchmark verifying 1ns/iter latency on the Sovereign Core.*
 
