@@ -75,7 +75,7 @@ strip = "symbols"
 codegen-units = 1
 
 [profile.test]
-panic = "abort"[package]
+panic = "abort" [package]
 name = "penta_v_kernel"
 # Version 0.4.0: The Resonance Era - Universal Stability for Games, Data, & Backend.
 version = "0.4.0"
