@@ -1,9 +1,8 @@
 // src/lib.rs
 
 // --- CRITICAL CI & TARGET CONFIGURATION ---
-// Enforce no_std only in pure bare-metal production builds.
-// Python extensions and tests require the standard library's unwinding capabilities.
-#![cfg_attr(all(not(feature = "extension-module"), not(test), not(debug_assertions)), no_std)]
+// We keep the standard library active for Python extensions and data processing.
+// Bare-metal support is reserved for the Phase VII Hardware Abstraction Layer.
 
 //! # 🛡️ Penta-V Kernel (Penta-V-Core)
 //!
@@ -23,7 +22,7 @@ pub use crate::core::{CORE_BASE, SECURE_CORE};
 pub use crate::shapes::GeometricBalancer;
 pub use crate::mesh::{StabilityPacket, MeshNode};
 pub use crate::processing::PentaCleaner;
-pub use crate::resonance::HyperdimensionalStabilizer; // Exporting the new stabilizer
+pub use crate::resonance::HyperdimensionalStabilizer; 
 pub use crate::bridge::{
     SovereignPacker, 
     LogicSignature, 
@@ -39,6 +38,7 @@ use pyo3::prelude::*;
 #[pyfunction]
 /// Python Bridge: Calculates geometric impact based on the sovereign decay formula.
 fn calculate_impact(deficit: f64, immunity: f64) -> PyResult<f64> {
+    // Formula: (Deficit * 0.02) / Immunity
     Ok((deficit * 0.02) / immunity)
 }
 
@@ -56,7 +56,6 @@ fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<SovereignPacker>()?;
 
     // Submodule Registration: bridge
-    // This allows Python users to access: from penta_v_kernel.bridge import ...
     let bridge_mod = PyModule::new_bound(m.py(), "bridge")?;
     bridge_mod.add_class::<LogicSignature>()?;
     bridge_mod.add_class::<HeartbeatMonitor>()?;
@@ -66,13 +65,6 @@ fn penta_v_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     Ok(())
 }
 
-// --- Panic Handler for bare-metal targets ---
-#[cfg(all(not(feature = "extension-module"), not(test), not(debug_assertions)))]
-#[panic_handler]
-fn panic(_info: &::core::panic::PanicInfo) -> ! {
-    loop {}
-}
-
 // --- Internal Test Suite ---
 #[cfg(test)]
 mod tests {
@@ -80,9 +72,7 @@ mod tests {
 
     #[test]
     fn test_initialization() {
-        // Ensure the core boots at the unitary stability baseline.
         assert_eq!(CORE_BASE, 1.0);
-        // Ensure the security threshold is non-zero and defensive.
         assert!(SECURE_CORE > 0.0);
     }
 }
