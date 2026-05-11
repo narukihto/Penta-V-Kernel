@@ -13,6 +13,12 @@ readme = "README.md"
 repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
 homepage = "https://github.com/Penta-V-Kernel"
 
+[[bench]]
+name = "resonance_bench"
+harness = false
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
 
 # --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization) ---
 keywords = [
