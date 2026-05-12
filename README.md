@@ -173,6 +173,10 @@ The evolution of Penta-V follows a rigorous, non-linear progression. We do not m
 ## 🛠️ 9. Deployment & Global Verification
 
 ### 🚀 CI/CD Sovereign Pipeline
+ 
+![✅ System Integrity & Automated Testing](documents/resonance_bench.png
+) 
+
 Every line of code in Penta-V is baptized in fire. Our automated pipeline ensures that no "Weak Logic" ever reaches the master branch. Each build undergoes a **Resonance Stress Test** to ensure that performance never drifts from the unitary baseline.
 
 ### ⚡ Performance Evidence: The 1ns Barrier
