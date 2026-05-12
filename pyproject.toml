@@ -5,8 +5,8 @@ build-backend = "maturin"
 
 [project]
 name = "penta-v-kernel"
-# Version 0.4.2: The Resonance Era - Universal Stability for Games, Data, & Backend.
-version = "0.4.2" 
+# Version 0.4.3: The Resonance Era - Universal Stability for Games, Data, & Backend.
+version = "0.4.3" 
 description = "Universal Sovereign Engine for Geometric Stability, AI-Logic Validation, and High-Performance Resource Migration across Python and Rust."
 requires-python = ">=3.10"
 authors = [
