@@ -1,7 +1,7 @@
 [package]
 name = "penta_v_kernel"
 # Version 0.4.0: The Resonance Era - Universal Stability for Games, Data, & Backend.
-version = "0.4.0"
+version = "0.4.2"
 edition = "2021"
 authors = [
     "Issac Andrew (The First Architect) <Issaclex@proton.me>",
