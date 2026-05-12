@@ -54,7 +54,7 @@ classifiers = [
     "Topic :: System :: Monitoring",
     "Topic :: Games/Entertainment",
     "Topic :: Scientific/Engineering :: Information Analysis",
-    "Security :: Cryptography",
+    "Topic :: Security :: Cryptography", 
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: Apache Software License",
