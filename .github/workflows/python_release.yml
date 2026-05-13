@@ -1,49 +1,79 @@
-name: Penta-V Kernel PyPI Release
+name: Penta-V Kernel Sovereign Release
 
 on:
   push:
-    branches: [ main, Heartbeat ] # Updated to include your current active branch
+    # Monitoring core architecture, heartbeat logic, and implementation branches
+    branches: [ main, Heartbeat, ikom ]
     tags:
       - 'v*'
   pull_request:
     branches: [ main ]
-  # Manual Trigger: Enables the "Run workflow" button in GitHub UI
   workflow_dispatch: 
 
 jobs:
   test:
-    name: Rust Unit & Integration Tests
+    name: Core, Stability & Performance Validation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
-      - name: Run Stability & Benchmark Tests
-        run: cargo test --verbose
+        with:
+          components: rustfmt, clippy
 
-  build_wheels:
-    name: Build Python Wheels (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    needs: test
-    strategy:
-      matrix:
-        # Build matrix for multi-platform distribution
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Build Wheels via Maturin
+
+      - name: Run Integrated Test Suite
+        # Validate v0.4.0 core logic and HRL stabilization
+        run: cargo test --verbose --features default
+
+      - name: Verify Sovereign Integration
+        # Ensure synergy between AI Logic Validation and security primitives
+        run: cargo test --test integration_suite --features default
+
+      - name: Execute Sovereign Benchmarks
+        # Capture sub-nanosecond performance metrics (Resonance Pass)
+        run: |
+          cargo bench --bench resonance_bench -- --output-format bencher | tee benchmark_result.txt
+        continue-on-error: true
+
+      - name: Upload Performance Artifacts
+        # Archive Criterion HTML reports for performance audit and documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: resonance-performance-report
+          path: target/criterion/
+
+  build_wheels:
+    name: Build Sovereign Wheels (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Build Global Compatibility Wheels
         uses: PyO3/maturin-action@v1
         with:
           command: build
-          # Technical: Optimization for release builds
-          args: --release --out dist
+          # Release mode with HRL & Sovereign-pack features enabled
+          args: --release --out dist --features extension-module --features sovereign-pack
           sccache: 'true'
+          manylinux: auto 
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -51,22 +81,25 @@ jobs:
           path: dist
 
   publish_pypi:
-    name: Production Release (PyPI)
+    name: Sovereign PyPI Deployment
     runs-on: ubuntu-latest
     needs: build_wheels
-    # Critical: Publish only on version tags or manual trigger for testing
     if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    environment: release
     steps:
-      - name: Download Artifacts
+      - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
+          # Isolate wheels to prevent uploading benchmark directories (Fixes OS Error 21)
+          pattern: wheels-*
           merge-multiple: true
           path: dist
-      - name: Publish to PyPI
+
+      - name: Deploy to PyPI
         uses: PyO3/maturin-action@v1
         env:
-          # Required: PYPI_API_TOKEN must be stored in Repository Secrets
           MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         with:
           command: upload
-          args: --non-interactive --skip-existing dist/*
+          # Explicitly target binaries to ensure zero-drift deployment
+          args: --non-interactive --skip-existing dist/*.whl dist/*.tar.gz

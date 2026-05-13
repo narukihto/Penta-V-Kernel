@@ -13,6 +13,22 @@ use crate::core::cooling::CoolingProtocol;
 pub struct Guard;
 
 impl Guard {
+    /// Creates a new instance of the Guard sentinel.
+    /// Essential for benchmarking orchestration and Phase VI logic anchoring.
+    pub fn new() -> Self {
+        Self
+    }
+
+    /// Optimized validation and decay logic for high-frequency benchmarking.
+    /// This provides a direct path for sub-nanosecond latency measurements.
+    #[inline(always)]
+    pub fn validate_and_decay(&self, impact: f64, reduction: f64) -> f64 {
+        if !impact.is_finite() || impact < 0.0 {
+            return 0.0;
+        }
+        impact * reduction
+    }
+
     /// Mediates and applies calculated stressors to the kernel's stability state.
     /// 
     /// This function implements the 'Defensive Throttle' logic:
@@ -70,5 +86,12 @@ mod tests {
         
         // Assert: Protocol escalation must be triggered.
         assert!(matches!(cooling.state, CoolingState::Active));
+    }
+
+    #[test]
+    fn test_validate_and_decay_logic() {
+        let guard = Guard::new();
+        let result = guard.validate_and_decay(100.0, 0.5);
+        assert_eq!(result, 50.0);
     }
 }

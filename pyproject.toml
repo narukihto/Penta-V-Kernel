@@ -1,24 +1,73 @@
 [build-system]
-# Build Requirements: Use maturin as the backend for building Rust-based Python extensions
+# Build Requirements: Use maturin as the backend for building Rust-based Python extensions.
 requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "penta_v_kernel"
-version = "0.2.1"
-description = "A mission-critical Geometric Stability Protocol (Python Bindings)"
-requires-python = ">=3.7"
-authors = [{name = "Issac Andrew", email = "Issaclex@proton.me"}]
+name = "penta-v-kernel"
+# Version 0.4.3: The Resonance Era - Universal Stability for Games, Data, & Backend.
+version = "0.4.3" 
+description = "Universal Sovereign Engine for Geometric Stability, AI-Logic Validation, and High-Performance Resource Migration across Python and Rust."
+requires-python = ">=3.10"
+authors = [
+    {name = "issac Andrew  (The First Architect)", email = "Issaclex@proton.me"},
+    {name = "Klas Segeljakt", email = "klas.segeljakt@example.com"}
+]
 license = {text = "Apache-2.0"}
 readme = "README.md"
-keywords = ["kernel", "load-balancing", "geometry", "rust-bindings"]
-classifiers = [
-    "Programming Language :: Rust",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Topic :: System :: Networking",
+
+# --- The Universal Industry Keywords (Maximum Global SEO & Search Optimization for Python/PyPI) ---
+keywords = [
+    # Core Languages & Performance
+    "rust", "python-bindings", "performance", "low-latency", "high-concurrency", 
+    "parallel-computing", "systems-programming", "no-std", "real-time",
+
+    # AI & Machine Learning Sovereignty (The AI Developer Magnet)
+    "ai-safety", "llmops", "inference-optimization", "ai-alignment", 
+    "deterministic-ai", "neural-governance", "model-reliability", "vector-acceleration", 
+    "tensor-guard", "autonomous-safety", "logic-anchoring", "ai-immune-system", 
+    "computational-integrity", "high-speed-inference", "automated-sanitization", 
+    "predictive-stability", "ai-shield", "runtime-verification", "ai-robustness",
+    "data-science", "data-cleaning", "machine-learning",
+
+    # Infrastructure & Specialized Tech
+    "deeptech", "post-quantum", "cybersecurity", "distributed-systems", 
+    "sovereign-tech", "stability-protocol", "scalability", "resource-migration", 
+    "iot", "geometric-logic",
+
+    # Web3 & Emerging Markets
+    "blockchain", "web3", "smart-contracts", "decentralized", "fintech", 
+    "big-data", "backend",
+
+    # Creative & Simulation
+    "gamedev", "game-engine"
 ]
 
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Topic :: Games/Entertainment",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Security :: Cryptography", 
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+[project.urls]
+Homepage = "https://github.com/Penta-V-Kernel"
+Repository = "https://github.com/Penta-V-Kernel/Penta-V-Kernel"
+Documentation = "https://github.com/Penta-V-Kernel/Penta-V-Kernel/blob/main/README.md"
+
 [tool.maturin]
-# Configuration: Specifies the crate module name to match the Cargo.toml [lib] name
+# Configuration: Matches the crate module name in Cargo.toml.
 module-name = "penta_v_kernel"
-features = ["extension-module"]
+features = ["pyo3", "extension-module", "sovereign-pack"]
+# Optimization: Strip symbols to reduce binary size for high-performance deployments and games.
+strip = true
