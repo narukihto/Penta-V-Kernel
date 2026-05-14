@@ -1,4 +1,5 @@
 # 🛡️ Penta-V Kernel (Penta-V-Core)
+**for python branch and documentation:** https://github.com/narukihto/Penta-V-Kernel/tree/Heartbeat
 **The Sovereign Protocol for Geometric Stability & Thermal-Aware System Resilience.**
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/penta-v-kernel?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/penta-v-kernel)
 <h3>
