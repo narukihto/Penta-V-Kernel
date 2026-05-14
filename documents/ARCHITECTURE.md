@@ -53,7 +53,7 @@ The `src/bridge/` module acts as the diplomatic layer:
 * **The Circle ($N \to \infty$):** The ultimate asymptotic limit of stability used in global-scale cloud backends.
 
 ---
-**Core Architects:** * Khalid (The First Architect)
+**Core Architects:** * issac Andrew  (The First Architect)
 * Klas Segeljakt (Stability Lead)
 
 *Authorized for Global Sovereign Deployment - 2026.*
