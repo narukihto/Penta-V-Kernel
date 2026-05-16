@@ -17,8 +17,7 @@ pub const INV_SQRT_CARDINALITY: f64 = 0.447_213_595_499_957_94;
 
 /// Mask to strip the lowest 4 bits of the float's mantissa.
 /// This actively purges non-deterministic floating-point noise accumulated during FFI/Inference.
-const LATTICE_PURGE_MASK: u64 = 0_FFF_FFF_FFF_FFF_FF0;
-
+const LATTICE_PURGE_MASK: u64 = 0x_FFF_FFF_FFF_FFF_FF0;
 /// A stack-resident 5-vector representing the stability projection.
 #[derive(Debug, Clone, Copy)]
 pub struct HarmonicVector {
