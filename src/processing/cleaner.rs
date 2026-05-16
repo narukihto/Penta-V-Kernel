@@ -18,16 +18,13 @@ impl PentaCleaner {
     pub fn geometric_sanitize(df: &mut DataFrame, state: &ProcessingState) -> PolarsResult<()> {
         let pressure = state.data_pressure;
 
-        // SAFE & PARALLEL: We transform the dataframe inside its native structure
-        // without breaking Rust's aliasing rules.
-        let mut-columns = df.get_columns(); // Safe immutable/mutable separation handles this
-        
-        // Correct way in Polars to mutate columns in parallel safely:
+        // SAFE & PARALLEL: Transform the dataframe elements inside a parallel iterator
+        // We clone pointers (shallow copy) to parallelize safely without allocating deep heap data.
         let updated_columns: Vec<Series> = df
             .get_columns()
             .par_iter()
             .map(|series| {
-                let mut clned = series.clone(); // Shallow clone (cheap pointer copy, zero allocation)
+                let mut clned = series.clone(); // Cheap shallow clone (pointer duplication)
                 Self::purify_column(&mut clned, pressure);
                 clned
             })
