@@ -177,7 +177,7 @@ The evolution of Penta-V follows a rigorous, non-linear progression. We do not m
 ## ✅ System Integrity & Automated Testing
 Our architectural stability is verified through rigorous automated suites. Every commit triggers a full geometric stress simulation via GitHub Actions.
  
-![✅ System Integrity & Automated Testing](documents/Testing.png
+![✅ System Integrity & Automated Testing](Documentation/Testing.png
 ) 
 
 Every line of code in Penta-V is baptized in fire. Our automated pipeline ensures that no "Weak Logic" ever reaches the master branch. Each build undergoes a **Resonance Stress Test** to ensure that performance never drifts from the unitary baseline.
@@ -185,7 +185,7 @@ Every line of code in Penta-V is baptized in fire. Our automated pipeline ensure
 ### ⚡ Performance Evidence: The 1ns Barrier
 The following evidence, captured directly from our **GitHub Actions CI**, confirms that the kernel operates at the theoretical limits of modern silicon.
 
-![Resonance Bench Result](documents/resonance_bench.png
+![Resonance Bench Result](Documentation/resonance_bench.png
 ) 
 
 *Figure 1: Criterion benchmark verifying 1ns/iter latency on the Sovereign Core.*
